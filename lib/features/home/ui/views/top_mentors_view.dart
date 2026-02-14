@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:camelson/features/courses/data/models/teacher_model.dart';
+import 'package:simplify/features/courses/data/models/teacher_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,7 +1,7 @@
 // constants.dart
 import 'dart:developer';
 
-import 'package:camelson/core/core.dart';
+import 'package:simplify/core/core.dart';
 
 import '../api/google_sign_in_service.dart';
 import '../api/token_manager.dart';

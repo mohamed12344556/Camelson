@@ -1,4 +1,4 @@
-import 'package:camelson/core/core.dart';
+import 'package:simplify/core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 

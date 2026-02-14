@@ -1,6 +1,6 @@
-import 'package:camelson/core/constants/roadmap_constants.dart';
-import 'package:camelson/features/courses/ui/widgets/gaming_animated_roadmap.dart';
-import 'package:camelson/features/courses/ui/widgets/gaming_ui_components.dart';
+import 'package:simplify/core/constants/roadmap_constants.dart';
+import 'package:simplify/features/courses/ui/widgets/gaming_animated_roadmap.dart';
+import 'package:simplify/features/courses/ui/widgets/gaming_ui_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

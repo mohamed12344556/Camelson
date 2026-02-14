@@ -1,4 +1,4 @@
-import 'package:camelson/features/home/ui/widgets/custom_chips.dart';
+import 'package:simplify/features/home/ui/widgets/custom_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

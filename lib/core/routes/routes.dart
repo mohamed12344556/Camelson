@@ -17,6 +17,8 @@ class AppRoutes {
   static const String streamingNowView = '/streaming-now';
   static const String topMentorsView = '/top-mentors';
   static const String coursesView = '/courses';
+  static const String librariesView = '/libraries';
+  static const String libraryDetailsView = '/library-details';
   static const String courseDetailsView = '/course-details';
   static const String courseContentsView = '/course-contents';
   static const String subjectRoadmapView = '/subject-roadmap';
@@ -34,16 +36,6 @@ class AppRoutes {
 
   // Rank routes
   static const String rankView = '/rank';
-
-  // Plan routes
-  static const String planScreen = '/plan';
-  static const String myPlanView = '/my-plan';
-  static const String lessonsView = '/lessons';
-
-  // Study Preferences routes
-  static const String studyPreferencesSetup = '/study-preferences-setup';
-  static const String studyPreferencesForm = '/study-preferences-form';
-  static const String aiPlanPreview = '/ai-plan-preview';
 
   // Community routes
   static const String communityView = '/community';

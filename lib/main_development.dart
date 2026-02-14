@@ -2,9 +2,9 @@
 // flutter build apk --release --flavor development -t lib/main_development.dart
 import 'dart:developer';
 
-import 'package:camelson/core/api/google_sign_in_service.dart';
-import 'package:camelson/core/notifications/background_handler.dart';
-import 'package:camelson/firebase_options.dart';
+import 'package:simplify/core/api/google_sign_in_service.dart';
+import 'package:simplify/core/notifications/background_handler.dart';
+import 'package:simplify/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -19,7 +19,7 @@ import 'core/core.dart';
 import 'core/notifications/notification_service.dart';
 import 'core/services/deep_linking_service.dart';
 import 'core/utils/bloc_setup.dart';
-import 'camelson_app.dart';
+import 'simplify_app.dart';
 import 'features/community/data/models/community_constants.dart';
 
 Future<void> main() async {
@@ -73,7 +73,7 @@ Future<void> main() async {
   log('Main - hasValidSession: $hasValidSession');
 
   runApp(
-    CamelsonApp(
+    SimplifyApp(
       appRouter: Routers(),
       hasValidSession: hasValidSession,
       hasSeenOnboarding: hasSeenOnboarding,

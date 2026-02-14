@@ -1,4 +1,4 @@
-import 'package:camelson/features/profile/ui/views/profile_settings_view.dart';
+import 'package:simplify/features/profile/ui/views/profile_settings_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomCircleAvatar extends StatelessWidget {

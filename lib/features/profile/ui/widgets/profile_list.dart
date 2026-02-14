@@ -1,5 +1,5 @@
-import 'package:camelson/features/profile/ui/views/notification_settings_view.dart';
-import 'package:camelson/features/profile/ui/views/terms_&_conditions.dart';
+import 'package:simplify/features/profile/ui/views/notification_settings_view.dart';
+import 'package:simplify/features/profile/ui/views/terms_&_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

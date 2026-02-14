@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:camelson/core/languages/language_cubit.dart';
+import 'package:simplify/core/languages/language_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,12 +15,12 @@ import 'core/themes/cubit/theme_cubit.dart';
 import 'features/profile/ui/logic/plans/plans_cubit.dart';
 import 'generated/l10n.dart';
 
-class CamelsonApp extends StatefulWidget {
+class SimplifyApp extends StatefulWidget {
   final Routers appRouter;
   final bool hasValidSession;
   final bool hasSeenOnboarding;
 
-  const CamelsonApp({
+  const SimplifyApp({
     super.key,
     required this.appRouter,
     required this.hasValidSession,
@@ -28,10 +28,10 @@ class CamelsonApp extends StatefulWidget {
   });
 
   @override
-  State<CamelsonApp> createState() => _CamelsonAppState();
+  State<SimplifyApp> createState() => _SimplifyAppState();
 }
 
-class _CamelsonAppState extends State<CamelsonApp> {
+class _SimplifyAppState extends State<SimplifyApp> {
   @override
   void initState() {
     super.initState();

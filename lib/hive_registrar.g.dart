@@ -3,27 +3,19 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:camelson/features/community/data/models/pending_message.dart';
-import 'package:camelson/features/notes/data/models/note_model.dart';
-import 'package:camelson/features/schedule/data/models/event_model.dart';
-import 'package:camelson/features/schedule/data/models/study_preferences_model.dart';
+import 'package:simplify/features/community/data/models/pending_message.dart';
+import 'package:simplify/features/notes/data/models/note_model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(EventAdapter());
-    registerAdapter(EventTypeAdapter());
     registerAdapter(NoteAdapter());
     registerAdapter(PendingMessageAdapter());
-    registerAdapter(StudyPreferencesAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
-    registerAdapter(EventAdapter());
-    registerAdapter(EventTypeAdapter());
     registerAdapter(NoteAdapter());
     registerAdapter(PendingMessageAdapter());
-    registerAdapter(StudyPreferencesAdapter());
   }
 }

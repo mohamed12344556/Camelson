@@ -1,11 +1,10 @@
-import 'package:camelson/features/community/ui/logic/chat_bloc/chat_bloc.dart';
-import 'package:camelson/features/community/ui/logic/community_bloc/community_bloc.dart';
-import 'package:camelson/features/courses/ui/views/subject_roadmap_view.dart'
+import 'package:simplify/features/community/ui/logic/chat_bloc/chat_bloc.dart';
+import 'package:simplify/features/community/ui/logic/community_bloc/community_bloc.dart';
+import 'package:simplify/features/courses/ui/views/subject_roadmap_view.dart'
     hide AppRoutes;
-import 'package:camelson/features/profile/ui/views/edit_profile_view.dart';
-import 'package:camelson/features/profile/ui/views/invite_friends_view.dart';
-import 'package:camelson/features/profile/ui/views/payment_view.dart';
-import 'package:camelson/features/schedule/ui/widgets/study_preferences_form.dart';
+import 'package:simplify/features/profile/ui/views/edit_profile_view.dart';
+import 'package:simplify/features/profile/ui/views/invite_friends_view.dart';
+import 'package:simplify/features/profile/ui/views/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +22,7 @@ import '../../features/community/ui/views/community_view.dart';
 import '../../features/courses/ui/views/course_contents_view.dart';
 import '../../features/courses/ui/views/course_details_view.dart';
 import '../../features/courses/ui/views/courses_view.dart';
+import '../../features/courses/ui/views/libraries_view.dart';
 import '../../features/courses/ui/views/teacher_course_content.dart';
 import '../../features/courses/ui/views/teacher_profile_view.dart';
 import '../../features/home/logic/home_cubit.dart';
@@ -46,16 +46,6 @@ import '../../features/profile/ui/views/profile_settings_view.dart';
 import '../../features/profile/ui/views/security_settings_view.dart';
 import '../../features/profile/ui/widgets/payment_webview_screen.dart';
 import '../../features/rank/ui/views/rank_view.dart';
-import '../../features/schedule/data/models/event_model.dart';
-import '../../features/schedule/data/models/study_preferences_model.dart';
-import '../../features/schedule/ui/logic/lessons_cubit.dart';
-import '../../features/schedule/ui/logic/plan_cubit.dart';
-import '../../features/schedule/ui/logic/study_preferences_cubit.dart';
-import '../../features/schedule/ui/views/ai_plan_preview.dart';
-import '../../features/schedule/ui/views/lessons_view.dart';
-import '../../features/schedule/ui/views/my_plan_view.dart';
-import '../../features/schedule/ui/views/plan_screen.dart';
-import '../../features/schedule/ui/views/study_preferences_setup_screen.dart';
 import '../core.dart';
 
 class Routers {
@@ -148,6 +138,9 @@ class Routers {
       case AppRoutes.coursesView:
         return MaterialPageRoute(builder: (_) => const CoursesView());
 
+      case AppRoutes.librariesView:
+        return MaterialPageRoute(builder: (_) => const LibrariesView());
+
       case AppRoutes.courseDetailsView:
         return MaterialPageRoute(builder: (_) => CourseDetailsView());
 
@@ -167,79 +160,6 @@ class Routers {
 
       case AppRoutes.rankView:
         return MaterialPageRoute(builder: (_) => const RankView());
-
-      case AppRoutes.planScreen:
-        return MaterialPageRoute(builder: (_) => const PlanScreen());
-
-      case AppRoutes.myPlanView:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => sl<PlanCubit>()..loadEvents(),
-            child: const MyPlanView(),
-          ),
-        );
-
-      case AppRoutes.lessonsView:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => sl<LessonsCubit>()..loadEvents(),
-            child: const LessonsView(),
-          ),
-        );
-
-      // Study Preferences Routes
-      case AppRoutes.studyPreferencesSetup:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) =>
-                sl<StudyPreferencesCubit>()..checkSetupStatus(),
-            child: const StudyPreferencesSetupScreen(),
-          ),
-        );
-
-      case AppRoutes.studyPreferencesForm:
-        final initialPreferences = arguments as StudyPreferences?;
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => sl<StudyPreferencesCubit>(),
-            child: Scaffold(
-              body: StudyPreferencesForm(
-                initialPreferences: initialPreferences,
-                onSubmit: (preferences) {
-                  Navigator.of(context).pop(preferences);
-                },
-              ),
-            ),
-          ),
-        );
-
-      case AppRoutes.aiPlanPreview:
-        final args = arguments as Map<String, dynamic>?;
-        final preferences = args?['preferences'] as StudyPreferences?;
-        final events = args?['events'] as List<Event>?;
-
-        // Handle null preferences case
-        if (preferences == null) {
-          return MaterialPageRoute(
-            builder: (context) => const Scaffold(
-              body: Center(child: Text('Invalid preferences data')),
-            ),
-          );
-        }
-
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => sl<StudyPreferencesCubit>(),
-            child: AIPlanPreviewView(
-              preferences: preferences,
-              onAcceptPlan: (generatedEvents) {
-                // Handle accepting the plan
-                // This would typically navigate back or show success
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-        );
 
       case AppRoutes.communityView:
         return MaterialPageRoute(

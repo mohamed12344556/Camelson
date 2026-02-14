@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:camelson/features/schedule/data/repos/study_preferences_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -21,13 +20,6 @@ import '../../features/notes/data/models/note_model.dart';
 import '../../features/notes/data/repos/notes_repo.dart';
 import '../../features/notes/ui/logic/notes_cubit.dart';
 import '../../features/notification/ui/logic/notification_cubit.dart';
-import '../../features/schedule/data/models/event_model.dart';
-import '../../features/schedule/data/models/study_preferences_model.dart';
-import '../../features/schedule/data/repos/event_repository.dart';
-import '../../features/schedule/ui/logic/lessons_cubit.dart';
-import '../../features/schedule/ui/logic/main_plan_cubit.dart';
-import '../../features/schedule/ui/logic/plan_cubit.dart';
-import '../../features/schedule/ui/logic/study_preferences_cubit.dart';
 import '../../features/community/data/models/pending_message.dart';
 import '../../features/community/data/services/message_queue_manager.dart';
 import '../core.dart';
@@ -73,9 +65,6 @@ Future<void> setupGetIt() async {
 
   // Notes
   await _initNotes();
-
-  // Plan & Study Preferences
-  await _initPlan();
 
   // Chat - Initialize last due to dependencies
   await _initChat();
@@ -152,51 +141,6 @@ void _initCommunity() {
     () => CommunityBloc(
       repository: sl<ChatRepository>(),
       questionService: sl<QuestionService>(),
-    ),
-  );
-}
-
-// تحديث _initPlan لضمان تسجيل صحيح للـ Cubits
-Future<void> _initPlan() async {
-  // Register adapters (Hive already initialized)
-  Hive.registerAdapter(EventAdapter());
-  Hive.registerAdapter(EventTypeAdapter());
-  Hive.registerAdapter(StudyPreferencesAdapter());
-
-  // Register Repositories as Singleton
-  sl.registerLazySingleton<EventRepository>(() => EventRepository());
-  sl.registerLazySingleton<StudyPreferencesRepository>(
-    () => StudyPreferencesRepository(),
-  );
-
-  // Initialize dummy data for events
-  final eventRepo = sl<EventRepository>();
-  final existingEvents = await eventRepo.getEvents();
-
-  // Add dummy data only if no events exist
-  if (existingEvents.isEmpty) {
-    await eventRepo.addDummyData();
-    print('Dummy data added successfully');
-  } else {
-    print('Events already exist: ${existingEvents.length}');
-  }
-
-  // Register Cubits - MainPlanCubit as Singleton, others as Factory
-  sl.registerFactory<MainPlanCubit>(() => MainPlanCubit());
-
-  // تسجيل باقي الـ Cubits كـ Factory
-  sl.registerFactory<PlanCubit>(
-    () => PlanCubit(eventRepository: sl<EventRepository>()),
-  );
-  sl.registerFactory<LessonsCubit>(
-    () => LessonsCubit(eventRepository: sl<EventRepository>()),
-  );
-
-  // تأكد من تسجيل StudyPreferencesCubit بشكل صحيح
-  sl.registerFactory<StudyPreferencesCubit>(
-    () => StudyPreferencesCubit(
-      studyPreferencesRepository: sl<StudyPreferencesRepository>(),
-      eventRepository: sl<EventRepository>(),
     ),
   );
 }
