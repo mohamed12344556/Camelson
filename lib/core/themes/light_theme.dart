@@ -4,38 +4,38 @@ import '../core.dart';
 
 final ThemeData lightTheme = ThemeData(
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: AppColors.background,
   brightness: Brightness.light,
   fontFamily: AppFonts.primaryFont,
   colorScheme: ColorScheme.fromSeed(
     seedColor: AppColors.primary,
     brightness: Brightness.light,
+    surface: AppColors.background,
+    onSurface: AppColors.text,
   ),
 
   appBarTheme: AppBarTheme(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColors.background,
     elevation: 0,
     scrolledUnderElevation: 0,
     centerTitle: true,
     titleTextStyle: AppTextStyling.font10W400TextColor.copyWith(
-      color: const Color(0xFF374151),
+      color: AppColors.text,
       fontSize: 18,
       fontWeight: FontWeight.w600,
     ),
-    iconTheme: const IconThemeData(color: Color(0xFF374151)),
+    iconTheme: IconThemeData(color: AppColors.text),
   ),
 
   textTheme: ThemeData.light().textTheme.apply(
     bodyColor: AppColors.text,
-    displayColor: AppColors.secondary,
+    displayColor: AppColors.text,
     fontFamily: AppFonts.textFont,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       backgroundColor: AppColors.primary,
-      // foregroundColor: AppColors.primary,
-      // disabledBackgroundColor: AppColors.primary,
-      // disabledForegroundColor: AppColors.primary,
+      foregroundColor: AppColors.background,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       textStyle: AppTextStyling.font10W400TextColor,
       elevation: 0,
@@ -44,49 +44,54 @@ final ThemeData lightTheme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(color: Colors.grey[200]!, width: 1),
+      borderSide: BorderSide(color: AppColors.lightSecondary, width: 1),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(color: Colors.grey[200]!, width: 1),
+      borderSide: BorderSide(color: AppColors.lightSecondary, width: 1),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: BorderSide(color: Colors.grey[300]!, width: 1),
+      borderSide: BorderSide(color: AppColors.primary, width: 1.5),
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: Colors.red, width: 1),
+      borderSide: BorderSide(color: AppColors.error, width: 1),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
-      borderSide: const BorderSide(color: Colors.red, width: 1),
+      borderSide: BorderSide(color: AppColors.error, width: 1.5),
     ),
-    fillColor: WidgetStateColor.resolveWith((states) {
-      if (states.contains(WidgetState.focused)) {
-        return AppColors.primary;
-      }
-      return AppColors.error;
-    }),
+    fillColor: AppColors.lightWhite,
     filled: true,
     hintStyle: AppTextStyling.font10W400TextColor.copyWith(
-      color: AppColors.error,
+      color: AppColors.text.withValues(alpha: 0.5),
     ),
   ),
-  switchTheme: const SwitchThemeData(
-    thumbColor: WidgetStatePropertyAll(AppColors.primary),
-    trackColor: WidgetStatePropertyAll(AppColors.primary),
-    trackOutlineColor: WidgetStatePropertyAll(AppColors.primary),
+  switchTheme: SwitchThemeData(
+    thumbColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return AppColors.background;
+      }
+      return AppColors.lightSecondary;
+    }),
+    trackColor: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return AppColors.primary;
+      }
+      return AppColors.lightSecondary;
+    }),
+    trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
   ),
-  bottomAppBarTheme: const BottomAppBarThemeData(
-    color: AppColors.primary,
+  bottomAppBarTheme: BottomAppBarThemeData(
+    color: AppColors.background,
     elevation: 0,
   ),
-  bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: AppColors.primary,
+  bottomSheetTheme: BottomSheetThemeData(
+    backgroundColor: AppColors.background,
   ),
-  dividerTheme: const DividerThemeData(
-    color: Colors.grey,
+  dividerTheme: DividerThemeData(
+    color: AppColors.lightSecondary,
     thickness: 1,
     endIndent: 10,
     indent: 10,

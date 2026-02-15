@@ -15,25 +15,36 @@ class CategoriesView extends StatefulWidget {
 
 class _CategoriesViewState extends State<CategoriesView> {
   final List<Map<String, String>> allCategories = [
-    {'name': 'Physics', 'image': 'assets/images/physics.png'},
-    {'name': 'Chemistry', 'image': 'assets/images/chemistry.png'},
-    {'name': 'Biology', 'image': 'assets/images/biology.png'},
-    {'name': 'Mathematics', 'image': 'assets/images/math.png'},
-    {'name': 'English', 'image': 'assets/images/english.png'},
-    {'name': 'Arabic', 'image': 'assets/images/arabic.png'},
-    {'name': 'French', 'image': 'assets/images/french.png'},
-    {'name': 'Biology', 'image': 'assets/images/biology.png'},
-    {'name': 'Chemistry', 'image': 'assets/images/chemistry.png'},
-    {'name': 'Physics', 'image': 'assets/images/physics.png'},
-    {'name': 'English', 'image': 'assets/images/english.png'},
-    {'name': 'Biology', 'image': 'assets/images/biology.png'},
-    {'name': 'Chemistry', 'image': 'assets/images/chemistry.png'},
-    {'name': 'Physics', 'image': 'assets/images/physics.png'},
-    {'name': 'English', 'image': 'assets/images/english.png'},
-    {'name': 'Biology', 'image': 'assets/images/biology.png'},
-    {'name': 'Chemistry', 'image': 'assets/images/chemistry.png'},
-    {'name': 'Physics', 'image': 'assets/images/physics.png'},
-    {'name': 'English', 'image': 'assets/images/english.png'},
+    {
+      'name': 'First Year',
+      'nameAr': 'السنة الأولى',
+      'image': 'assets/images/learning.png',
+    },
+    {
+      'name': 'Second Year',
+      'nameAr': 'السنة الثانية',
+      'image': 'assets/images/learning.png',
+    },
+    {
+      'name': 'Third Year',
+      'nameAr': 'السنة الثالثة',
+      'image': 'assets/images/learning.png',
+    },
+    {
+      'name': 'Fourth Year',
+      'nameAr': 'السنة الرابعة',
+      'image': 'assets/images/learning.png',
+    },
+    {
+      'name': 'Fifth Year',
+      'nameAr': 'السنة الخامسة',
+      'image': 'assets/images/learning.png',
+    },
+    {
+      'name': 'Sixth Year',
+      'nameAr': 'السنة السادسة',
+      'image': 'assets/images/learning.png',
+    },
   ];
 
   List<Map<String, String>> displayedCategories = [];
@@ -61,7 +72,9 @@ class _CategoriesViewState extends State<CategoriesView> {
         displayedCategories =
             allCategories
                 .where(
-                  (category) => category['name']!.toLowerCase().contains(query),
+                  (category) =>
+                      category['name']!.toLowerCase().contains(query) ||
+                      (category['nameAr']?.contains(query) ?? false),
                 )
                 .toList();
       }
@@ -72,10 +85,11 @@ class _CategoriesViewState extends State<CategoriesView> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isSmallScreen = size.width < 360;
+    final isArabic = context.isArabic;
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Subject',
+        title: isArabic ? 'السنين' : 'Years',
         onBackPressed: () {
           context.setNavBarVisible(true);
           Navigator.pop(context);
@@ -90,13 +104,13 @@ class _CategoriesViewState extends State<CategoriesView> {
             Expanded(
               child:
                   displayedCategories.isEmpty
-                      ? const Center(
+                      ? Center(
                         child: Text(
-                          'No subjects found',
+                          isArabic ? 'لا توجد سنوات' : 'No years found',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey,
+                            color: AppColors.text.withValues(alpha: 0.6),
                           ),
                         ),
                       )

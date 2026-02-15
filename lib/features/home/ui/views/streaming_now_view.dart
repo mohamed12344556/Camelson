@@ -1,4 +1,4 @@
-import 'package:simplify/features/home/ui/widgets/custom_chips.dart';
+import 'package:boraq/features/home/ui/widgets/custom_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,116 +22,129 @@ class _StreamingNowViewState extends State<StreamingNowView> {
     'All',
     'Live',
     'Recorded',
-    'Math',
-    'Physics',
-    'English',
-    'Arabic',
+    'Anatomy',
+    'Physiology',
+    'Pathology',
+    'Pharmacology',
   ];
   final List<String> _sortOptions = [
     'Most Popular',
     'Newest First',
     'Duration',
-    'Most Viewers',
+    'Most Subscribers',
   ];
 
-  // Sample streaming data
+  // Medical Libraries streaming data
   final List<Map<String, dynamic>> _allStreamingData = [
     {
-      'title': 'Master JavaScript in 30 Days',
-      'instructor': 'Sarah Johnson',
+      'title': 'Human Anatomy - Complete Course',
+      'instructor': 'Prof. Ahmed Hassan',
       'avatar': 'assets/images/person2.png',
-      'duration': '02:15:30',
-      'image': 'assets/images/teacher_streaming.jpg',
+      'duration': '12:20:00',
+      'image': 'assets/images/learning.png',
       'isLive': true,
-      'viewers': 1250,
+      'viewers': 2500,
+      'rating': 4.9,
+      'subject': 'Anatomy',
+      'level': 'First Year',
+      'subscribers': 12345,
+      'price': 850,
+    },
+    {
+      'title': 'Physiology Fundamentals',
+      'instructor': 'Dr. Sarah Mohamed',
+      'avatar': 'assets/images/person2.png',
+      'duration': '10:45:30',
+      'image': 'assets/images/learning.png',
+      'isLive': true,
+      'viewers': 2100,
       'rating': 4.8,
-      'subject': 'Programming',
-      'level': 'Intermediate',
+      'subject': 'Physiology',
+      'level': 'First Year',
+      'subscribers': 10234,
+      'price': 750,
     },
     {
-      'title': 'Advanced Flutter Development',
-      'instructor': 'Ahmed Hassan',
+      'title': 'Pathology Principles',
+      'instructor': 'د. محمد عبدالله',
       'avatar': 'assets/images/person2.png',
-      'duration': '01:45:20',
-      'image': 'assets/images/teacher_streaming.jpg',
-      'isLive': true,
-      'viewers': 890,
-      'rating': 4.9,
-      'subject': 'Programming',
-      'level': 'Advanced',
-    },
-    {
-      'title': 'UI/UX Design Fundamentals',
-      'instructor': 'Emma Wilson',
-      'avatar': 'assets/images/person2.png',
-      'duration': '03:22:10',
-      'image': 'assets/images/teacher_streaming.jpg',
-      'isLive': false,
-      'viewers': 2340,
-      'rating': 4.7,
-      'subject': 'Design',
-      'level': 'Beginner',
-    },
-    {
-      'title': 'Python for Data Science',
-      'instructor': 'Michael Chen',
-      'avatar': 'assets/images/person2.png',
-      'duration': '02:08:45',
-      'image': 'assets/images/teacher_streaming.jpg',
-      'isLive': true,
-      'viewers': 567,
-      'rating': 4.6,
-      'subject': 'Programming',
-      'level': 'Intermediate',
-    },
-    {
-      'title': 'Digital Marketing Strategy',
-      'instructor': 'Lisa Garcia',
-      'avatar': 'assets/images/person2.png',
-      'duration': '01:55:15',
-      'image': 'assets/images/teacher_streaming.jpg',
-      'isLive': false,
-      'viewers': 3210,
-      'rating': 4.5,
-      'subject': 'Marketing',
-      'level': 'Beginner',
-    },
-    // Add more items for demonstration
-    {
-      'title': 'Physics for Engineers',
-      'instructor': 'Dr. Ahmed Ali',
-      'avatar': 'assets/images/person2.png',
-      'duration': '02:30:00',
-      'image': 'assets/images/teacher_streaming.jpg',
-      'isLive': true,
-      'viewers': 445,
-      'rating': 4.9,
-      'subject': 'Physics',
-      'level': 'Advanced',
-    },
-    {
-      'title': 'English Grammar Mastery',
-      'instructor': 'Jennifer Smith',
-      'avatar': 'assets/images/person2.png',
-      'duration': '01:20:30',
-      'image': 'assets/images/teacher_streaming.jpg',
+      'duration': '15:30:00',
+      'image': 'assets/images/learning.png',
       'isLive': false,
       'viewers': 1890,
-      'rating': 4.7,
-      'subject': 'English',
-      'level': 'Intermediate',
+      'rating': 4.95,
+      'subject': 'Pathology',
+      'level': 'Third Year',
+      'subscribers': 8976,
+      'price': 900,
     },
     {
-      'title': 'Arabic Literature',
-      'instructor': 'محمد عبدالله',
+      'title': 'Pharmacology Mastery',
+      'instructor': 'Prof. Layla Ibrahim',
       'avatar': 'assets/images/person2.png',
-      'duration': '02:00:00',
-      'image': 'assets/images/teacher_streaming.jpg',
+      'duration': '14:15:45',
+      'image': 'assets/images/learning.png',
       'isLive': true,
-      'viewers': 756,
-      'rating': 4.8,
-      'subject': 'Arabic',
-      'level': 'Advanced',
+      'viewers': 1650,
+      'rating': 4.7,
+      'subject': 'Pharmacology',
+      'level': 'Third Year',
+      'subscribers': 9234,
+      'price': 800,
+    },
+    {
+      'title': 'Clinical Medicine Essentials',
+      'instructor': 'Dr. Youssef Kamal',
+      'avatar': 'assets/images/person2.png',
+      'duration': '18:00:00',
+      'image': 'assets/images/learning.png',
+      'isLive': false,
+      'viewers': 1420,
+      'rating': 4.85,
+      'subject': 'Clinical Medicine',
+      'level': 'Fourth Year',
+      'subscribers': 8765,
+      'price': 950,
+    },
+    {
+      'title': 'Biochemistry Complete Guide',
+      'instructor': 'Prof. Hoda Salah',
+      'avatar': 'assets/images/person2.png',
+      'duration': '11:30:00',
+      'image': 'assets/images/learning.png',
+      'isLive': true,
+      'viewers': 1950,
+      'rating': 4.75,
+      'subject': 'Biochemistry',
+      'level': 'Second Year',
+      'subscribers': 10890,
+      'price': 700,
+    },
+    {
+      'title': 'Surgery Fundamentals',
+      'instructor': 'Dr. Nour Eldin',
+      'avatar': 'assets/images/person2.png',
+      'duration': '16:20:30',
+      'image': 'assets/images/learning.png',
+      'isLive': false,
+      'viewers': 1280,
+      'rating': 4.9,
+      'subject': 'Surgery',
+      'level': 'Fifth Year',
+      'subscribers': 7890,
+      'price': 1000,
+    },
+    {
+      'title': 'Pediatrics Essentials',
+      'instructor': 'د. فاطمة الزهراء',
+      'avatar': 'assets/images/person2.png',
+      'duration': '13:00:00',
+      'image': 'assets/images/learning.png',
+      'isLive': true,
+      'viewers': 1120,
+      'rating': 4.9,
+      'subject': 'Pediatrics',
+      'level': 'Sixth Year',
     },
   ];
 
@@ -196,7 +209,7 @@ class _StreamingNowViewState extends State<StreamingNowView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: AppColors.background,
       appBar: CustomAppBar(
         title: 'Streaming Now',
         onBackPressed: () {
@@ -248,14 +261,14 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                           // Icons.live_tv_off,
                           Icons.live_tv_outlined,
                           size: 80.sp,
-                          color: Colors.grey[400],
+                          color: AppColors.text.withValues(alpha: 0.4),
                         ),
                         SizedBox(height: 16.h),
                         Text(
                           'No streams found',
                           style: TextStyle(
                             fontSize: 18.sp,
-                            color: Colors.grey[600],
+                            color: AppColors.text.withValues(alpha: 0.6),
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -284,9 +297,9 @@ class _StreamingNowViewState extends State<StreamingNowView> {
   Widget _buildSortButton() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.background,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: Colors.grey[300]!),
+        border: Border.all(color: AppColors.text.withValues(alpha: 0.2)),
       ),
       child: PopupMenuButton<String>(
         initialValue: _selectedSort,
@@ -303,12 +316,12 @@ class _StreamingNowViewState extends State<StreamingNowView> {
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
           child: Row(
             children: [
-              Icon(Icons.sort, size: 20.sp, color: Colors.grey[700]),
+              Icon(Icons.sort, size: 20.sp, color: AppColors.text.withValues(alpha: 0.7)),
               SizedBox(width: 4.w),
               Text(
                 'Sort',
                 style: TextStyle(
-                  color: Colors.grey[700],
+                  color: AppColors.text.withValues(alpha: 0.7),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -330,10 +343,10 @@ class _StreamingNowViewState extends State<StreamingNowView> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
-          color: Colors.white,
+          color: AppColors.background,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: AppColors.text.withValues(alpha: 0.08),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -380,7 +393,7 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                                     width: 6.w,
                                     height: 6.h,
                                     decoration: const BoxDecoration(
-                                      color: Colors.white,
+                                      color: AppColors.background,
                                       shape: BoxShape.circle,
                                     ),
                                   ),
@@ -388,7 +401,7 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                                   Text(
                                     'LIVE',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: AppColors.background,
                                       fontSize: 10.sp,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -407,21 +420,21 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                               vertical: 4.h,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.7),
+                              color: AppColors.text.withValues(alpha: 0.7),
                               borderRadius: BorderRadius.circular(12.r),
                             ),
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.visibility,
-                                  color: Colors.white,
+                                  color: AppColors.background,
                                   size: 14.sp,
                                 ),
                                 SizedBox(width: 4.w),
                                 Text(
                                   '${stream['viewers']}',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: AppColors.background,
                                     fontSize: 12.sp,
                                   ),
                                 ),
@@ -465,7 +478,7 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                                   stream['instructor'],
                                   style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: Colors.grey[600],
+                                    color: AppColors.text.withValues(alpha: 0.6),
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -481,7 +494,7 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                                 children: [
                                   Icon(
                                     Icons.star,
-                                    color: Colors.amber,
+                                    color: AppColors.accent,
                                     size: 14.sp,
                                   ),
                                   SizedBox(width: 2.w),
@@ -498,7 +511,7 @@ class _StreamingNowViewState extends State<StreamingNowView> {
                                 stream['duration'],
                                 style: TextStyle(
                                   fontSize: 11.sp,
-                                  color: Colors.grey[600],
+                                  color: AppColors.text.withValues(alpha: 0.6),
                                 ),
                               ),
                             ],

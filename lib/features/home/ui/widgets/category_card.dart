@@ -9,13 +9,18 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isArabic = context.isArabic;
+    final displayName = isArabic
+        ? (category['nameAr'] ?? category['name']!)
+        : category['name']!;
+
     return GestureDetector(
       onTap: () {
         context.pushNamed(
           AppRoutes.coursesView,
           // arguments: {'categoryId': category['id']},
         );
-        context.showSuccessSnackBar('${category['name']} selected');
+        context.showSuccessSnackBar('$displayName ${isArabic ? 'تم اختيارها' : 'selected'}');
       },
       child: Container(
         decoration: BoxDecoration(
@@ -23,7 +28,7 @@ class CategoryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: AppColors.text.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -39,11 +44,11 @@ class CategoryCard extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.background,
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: AppColors.text.withValues(alpha: 0.05),
                         spreadRadius: 1,
                         blurRadius: 5,
                       ),
@@ -59,18 +64,19 @@ class CategoryCard extends StatelessWidget {
                 alignment: Alignment.center,
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: AppColors.background,
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15),
                   ),
                 ),
                 child: Text(
-                  category['name']!,
-                  style: const TextStyle(
+                  displayName,
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    color: AppColors.text,
                   ),
                   textAlign: TextAlign.center,
                   maxLines: 1,

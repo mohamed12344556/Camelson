@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/core.dart';
+
 class BuildRowOfTextAndTextButton extends StatelessWidget {
   final String text;
+  final String? textEn;
   final VoidCallback onPressed;
   final Widget? child;
   final Color? seeAllColor;
   const BuildRowOfTextAndTextButton({
     super.key,
     required this.text,
+    this.textEn,
     required this.onPressed,
     this.seeAllColor,
     this.child,
@@ -16,13 +20,16 @@ class BuildRowOfTextAndTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final displayText = context.isArabic ? text : (textEn ?? text);
+    final seeAllText = context.isArabic ? 'عرض الكل' : 'See All';
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          text,
+          displayText,
           style: TextStyle(
-            color: Color(0xff202244),
+            color: AppColors.text,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -33,9 +40,9 @@ class BuildRowOfTextAndTextButton extends StatelessWidget {
             children: [
               child ??
                   Text(
-                    'See All',
+                    seeAllText,
                     style: TextStyle(
-                      color: seeAllColor ?? Color(0xff2F98D7),
+                      color: seeAllColor ?? AppColors.primary,
                     ),
                   ),
               const SizedBox(width: 8),
@@ -44,7 +51,7 @@ class BuildRowOfTextAndTextButton extends StatelessWidget {
                 height: 10,
                 width: 6,
                 colorFilter: ColorFilter.mode(
-                  seeAllColor ?? Color(0xff2F98D7),
+                  seeAllColor ?? AppColors.primary,
                   BlendMode.srcIn,
                 ),
               ),

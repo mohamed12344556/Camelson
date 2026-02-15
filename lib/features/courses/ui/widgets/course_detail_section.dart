@@ -28,14 +28,14 @@ class _CourseDetailSectionState extends State<CourseDetailSection> {
       height: MediaQuery.of(context).size.height * 0.5,
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.background,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: AppColors.text.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
-          )
+          ),
         ],
       ),
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
@@ -49,9 +49,9 @@ class _CourseDetailSectionState extends State<CourseDetailSection> {
             Row(
               children: [
                 Text(
-                  "Arabic",
+                  widget.course.subject,
                   style: TextStyle(
-                    color: Colors.orange,
+                    color: AppColors.primary,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -61,14 +61,11 @@ class _CourseDetailSectionState extends State<CourseDetailSection> {
                 // Rate Section
                 Row(
                   children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.yellow,
-                    ),
+                    Icon(Icons.star, color: AppColors.accent),
                     Text(
-                      "4.5",
+                      widget.course.rating.toString(),
                       style: TextStyle(
-                        color: Colors.orange,
+                        color: AppColors.primary,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -79,9 +76,9 @@ class _CourseDetailSectionState extends State<CourseDetailSection> {
             ),
             //? Course Title Section
             Text(
-              "Story Details Revision",
+              widget.course.title,
               style: TextStyle(
-                color: Colors.black,
+                color: AppColors.text,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -89,41 +86,39 @@ class _CourseDetailSectionState extends State<CourseDetailSection> {
             //? Course Number of Lessons && Hours and Price Section
             Row(
               children: [
-                Icon(
-                  Icons.photo_camera_front,
-                ),
-                SizedBox(width: 10),
-                Text(
-                  "21 Lessons",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                Icon(Icons.photo_camera_front, size: 20),
+                SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    "${widget.course.totalLessons} Lectures",
+                    style: TextStyle(
+                      color: AppColors.text,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                SizedBox(width: 20),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.punch_clock_outlined,
-                      color: Colors.black,
+                SizedBox(width: 12),
+                Icon(Icons.punch_clock_outlined, color: AppColors.text, size: 20),
+                SizedBox(width: 4),
+                Flexible(
+                  child: Text(
+                    "${(widget.course.totalDurationMinutes / 60).toStringAsFixed(1)}h",
+                    style: TextStyle(
+                      color: AppColors.text,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      "42 hours",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Spacer(),
                 Text(
-                  "12 \$",
+                  "${widget.course.price.toInt()} EGP",
                   style: TextStyle(
                     color: AppColors.primary,
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -1,4 +1,4 @@
-import 'package:simplify/core/core.dart';
+import 'package:boraq/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';

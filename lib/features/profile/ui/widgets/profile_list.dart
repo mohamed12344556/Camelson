@@ -1,5 +1,5 @@
-import 'package:simplify/features/profile/ui/views/notification_settings_view.dart';
-import 'package:simplify/features/profile/ui/views/terms_&_conditions.dart';
+import 'package:boraq/features/profile/ui/views/notification_settings_view.dart';
+import 'package:boraq/features/profile/ui/views/terms_&_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,6 +24,12 @@ List<Map<String, dynamic>> getProfileOptions(BuildContext context) {
       "icon": Icons.person,
       "title": "Edit Profile",
       "page": EditProfileView(),
+    },
+    {
+      "icon": Icons.dashboard,
+      "title": "Student Dashboard",
+      "page": null, // Will use route navigation
+      "route": AppRoutes.studentDashboardView,
     },
     const {
       "icon": Icons.payment,

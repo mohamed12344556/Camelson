@@ -1,4 +1,4 @@
-import 'package:simplify/core/constants/roadmap_constants.dart';
+import 'package:boraq/core/constants/roadmap_constants.dart';
 import 'package:flutter/material.dart';
 
 class ResponsiveChapterPatternPainter extends CustomPainter {

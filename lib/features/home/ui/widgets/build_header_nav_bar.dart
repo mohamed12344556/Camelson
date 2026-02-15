@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:simplify/features/profile/ui/logic/profle/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/core.dart';
+import '../../../profile/ui/logic/profle/profile_cubit.dart';
 import '../../../profile/ui/logic/profle/profile_state.dart';
 import 'build_greeting_mood_and_user_name.dart';
 import 'custom_circle_avatar.dart';
@@ -45,7 +45,7 @@ class BuildHeaderNavBar extends StatelessWidget {
     return CustomCircleAvatar(
       isHasImage: false,
       onTap: () => log('Notes'),
-      backgroundColor: AppColors.lightBlue.withValues(alpha: 0.8),
+      backgroundColor: AppColors.primary.withValues(alpha: 0.8),
       child: Image.asset('assets/images/notes.png', width: 35.w, height: 35.h),
     );
   }
@@ -73,7 +73,7 @@ class BuildHeaderNavBar extends StatelessWidget {
       label: Text(
         displayCount,
         style: TextStyle(
-          color: Colors.white,
+          color: AppColors.background,
           fontSize: 10.sp,
           fontWeight: FontWeight.bold,
         ),
@@ -81,7 +81,7 @@ class BuildHeaderNavBar extends StatelessWidget {
       backgroundColor: const Color(0xffFF6B2C),
       child: Icon(
         Icons.notifications_none_sharp,
-        color: Colors.white,
+        color: AppColors.background,
         size: 35.sp,
       ),
     );

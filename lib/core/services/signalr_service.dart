@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:simplify/core/api/api_constants.dart';
+import 'package:boraq/core/api/api_constants.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
 import '../api/token_manager.dart';

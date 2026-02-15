@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/core.dart';
 import '../../../../core/themes/font_weight_helper.dart';
-import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/custom_search_bar.dart';
 import '../../../../core/widgets/modern_empty_state.dart';
 import '../../../../core/widgets/modern_error_state.dart';
@@ -114,7 +113,7 @@ class _CommunityViewState extends State<CommunityView>
     return Scaffold(
       backgroundColor: context.colors.surface,
       body: BlocBuilder<CommunityBloc, CommunityState>(builder: _buildBody),
-      floatingActionButton:  Align(
+      floatingActionButton: Align(
         alignment: Alignment(1.0, 0.85),
         child: AnimatedSlide(
           duration: const Duration(milliseconds: 300),
@@ -185,7 +184,7 @@ class _CommunityViewState extends State<CommunityView>
         title: Text(
           'المجتمع التعليمي',
           style: context.textTheme.titleLarge?.copyWith(
-            color: Colors.white,
+            color: AppColors.background,
             fontWeight: FontWeightHelper.bold,
           ),
         ),
@@ -213,7 +212,7 @@ class _CommunityViewState extends State<CommunityView>
                   height: 220,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.08),
+                    color: AppColors.background.withValues(alpha:0.08),
                   ),
                 ),
               ),
@@ -225,7 +224,7 @@ class _CommunityViewState extends State<CommunityView>
                   height: 180,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.06),
+                    color: AppColors.background.withValues(alpha:0.06),
                   ),
                 ),
               ),
@@ -237,7 +236,7 @@ class _CommunityViewState extends State<CommunityView>
                   height: 100,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.05),
+                    color: AppColors.background.withValues(alpha:0.05),
                   ),
                 ),
               ),
@@ -247,16 +246,16 @@ class _CommunityViewState extends State<CommunityView>
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(0.1),
+                    color: AppColors.background.withValues(alpha:0.1),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.3),
+                      color: AppColors.background.withValues(alpha:0.3),
                       width: 2,
                     ),
                   ),
                   child: const Icon(
                     Icons.forum_rounded,
                     size: 48,
-                    color: Colors.white,
+                    color: AppColors.background,
                   ),
                 ),
               ),
@@ -264,25 +263,25 @@ class _CommunityViewState extends State<CommunityView>
           ),
         ),
       ),
-      actions: [
-        IconButton(
-          icon: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.notifications_outlined,
-              color: Colors.white,
-            ),
-          ),
-          onPressed: () {
-            _showComingSoonSnackbar('الإشعارات');
-          },
-        ),
-        const SizedBox(width: 8),
-      ],
+      // actions: [
+      //   IconButton(
+      //     icon: Container(
+      //       padding: const EdgeInsets.all(8),
+      //       decoration: BoxDecoration(
+      //         color: AppColors.background.withValues(alpha:0.2),
+      //         shape: BoxShape.circle,
+      //       ),
+      //       child: const Icon(
+      //         Icons.notifications_outlined,
+      //         color: AppColors.background,
+      //       ),
+      //     ),
+      //     onPressed: () {
+      //       _showComingSoonSnackbar('الإشعارات');
+      //     },
+      //   ),
+      //   const SizedBox(width: 8),
+      // ],
     );
   }
 
@@ -416,7 +415,7 @@ class _CommunityViewState extends State<CommunityView>
               ),
             ],
           ),
-          labelColor: Colors.white,
+          labelColor: AppColors.background,
           unselectedLabelColor: context.colors.onSurfaceVariant,
           labelStyle: context.textTheme.titleSmall?.copyWith(
             fontWeight: FontWeightHelper.semiBold,
@@ -486,8 +485,8 @@ class _CommunityViewState extends State<CommunityView>
         delegate: SliverChildBuilderDelegate((context, index) {
           final question = questions[index];
           // Only show edit/delete/close actions if user is the creator
-          final canManage = question.creatorId ==
-              CommunityConstants.currentUser.id;
+          final canManage =
+              question.creatorId == CommunityConstants.currentUser.id;
           return QuestionCardWidget(
             question: question,
             onTap: () => _navigateToChat(question),
@@ -509,7 +508,7 @@ class _CommunityViewState extends State<CommunityView>
       label: const Text('اطرح سؤالاً'),
       elevation: 4,
       backgroundColor: context.colors.primary,
-      foregroundColor: Colors.white,
+      foregroundColor: AppColors.background,
     );
   }
 
@@ -522,11 +521,9 @@ class _CommunityViewState extends State<CommunityView>
     }
 
     // Check if user has left this room
-    final isViewOnly = context
-        .read<CommunityBloc>()
-        .state
-        .leftRoomIds
-        .contains(question.id);
+    final isViewOnly = context.read<CommunityBloc>().state.leftRoomIds.contains(
+      question.id,
+    );
 
     // ✅ Navigate and wait for result
     final result = await Navigator.push<String>(

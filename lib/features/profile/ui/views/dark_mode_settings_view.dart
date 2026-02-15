@@ -1,5 +1,5 @@
-import 'package:simplify/core/themes/cubit/theme_cubit.dart';
-import 'package:simplify/core/widgets/custom_app_bar.dart';
+import 'package:boraq/core/themes/cubit/theme_cubit.dart';
+import 'package:boraq/core/widgets/custom_app_bar.dart';
 // Navigation extensions moved to core/utils/extensions.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

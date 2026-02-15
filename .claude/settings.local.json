@@ -5,7 +5,11 @@
       "Bash(find:*)",
       "Bash(xargs:*)",
       "Bash(cd:*)",
-      "Bash(flutter pub:*)"
+      "Bash(flutter pub:*)",
+      "Bash(flutter run)",
+      "Bash(flutter devices:*)",
+      "Bash(adb shell am:*)",
+      "Bash(flutter clean:*)"
     ]
   }
 }

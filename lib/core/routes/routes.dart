@@ -12,6 +12,7 @@ class AppRoutes {
   // Main app routes
   static const String hostView = '/host';
   static const String homeView = '/home';
+  static const String studentDashboardView = '/student-dashboard';
   static const String aiChatView = '/ai-chat';
   static const String categoriesView = '/categories';
   static const String streamingNowView = '/streaming-now';

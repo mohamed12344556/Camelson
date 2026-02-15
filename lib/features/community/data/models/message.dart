@@ -1,6 +1,6 @@
-import 'package:simplify/features/community/data/models/message_attachment.dart';
-import 'package:simplify/features/community/data/models/message_reaction.dart';
-import 'package:simplify/features/community/data/models/user.dart';
+import 'package:boraq/features/community/data/models/message_attachment.dart';
+import 'package:boraq/features/community/data/models/message_reaction.dart';
+import 'package:boraq/features/community/data/models/user.dart';
 import 'dart:developer' as dev;
 
 enum MessageContentType {

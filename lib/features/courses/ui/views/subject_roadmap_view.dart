@@ -1,6 +1,6 @@
-import 'package:simplify/core/constants/roadmap_constants.dart';
-import 'package:simplify/features/courses/ui/widgets/gaming_animated_roadmap.dart';
-import 'package:simplify/features/courses/ui/widgets/gaming_ui_components.dart';
+import 'package:boraq/core/constants/roadmap_constants.dart';
+import 'package:boraq/features/courses/ui/widgets/gaming_animated_roadmap.dart';
+import 'package:boraq/features/courses/ui/widgets/gaming_ui_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -276,7 +276,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: AppColors.background,
                                 letterSpacing: 0.5,
                               ),
                             ),
@@ -322,7 +322,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                       child: Text(
                         'المستوى ${_getCurrentLevel()}',
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: AppColors.background,
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           letterSpacing: 0.5,
@@ -727,7 +727,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: color,
-                  foregroundColor: Colors.white,
+                  foregroundColor: AppColors.background,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -795,7 +795,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.background,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -928,7 +928,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0.5,
-                      color: Colors.white,
+                      color: AppColors.background,
                     ),
                   ),
                 ),
@@ -1032,7 +1032,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                     ),
                   ],
                 ),
-                child: Icon(icon, color: Colors.white, size: 24),
+                child: Icon(icon, color: AppColors.background, size: 24),
               ),
               const SizedBox(width: 16),
 
@@ -1068,7 +1068,7 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
                               'نشط',
                               style: TextStyle(
                                 fontSize: 10,
-                                color: Colors.white,
+                                color: AppColors.background,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 0.5,
                               ),
@@ -1176,26 +1176,35 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
     }
   }
 
-  // Sample data generator
+  // Sample data generator - Medical Anatomy Course
   SubjectRoadmap _getSampleRoadmapData() {
     return SubjectRoadmap(
-      subjectName: 'الرياضيات',
-      overallProgress: 45.5,
+      subjectName: 'التشريح البشري',
+      overallProgress: 35.0,
       chapters: [
         ChapterModel(
           chapterNumber: 1,
-          chapterName: 'الجبر الأساسي',
-          title: 'أساسيات الجبر',
-          description: 'تعلم أساسيات التعبيرات الجبرية والمعادلات',
+          chapterName: 'مقدمة في التشريح',
+          title: 'أساسيات التشريح البشري',
+          description: 'تعلم المصطلحات التشريحية الأساسية والمستويات التشريحية',
           chapterColor: const Color(0xFF2F98D7),
-          progress: 80.0,
-          currentLesson: 2,
-          isCompleted: false,
+          progress: 100.0,
+          currentLesson: 3,
+          isCompleted: true,
           isLocked: false,
           lessons: [
             LessonModel(
               lessonNumber: 1,
-              title: 'مقدمة في المتغيرات',
+              title: 'المصطلحات التشريحية',
+              type: LessonType.video,
+              durationMinutes: 20,
+              isCompleted: true,
+              isLocked: false,
+              isCurrent: false,
+            ),
+            LessonModel(
+              lessonNumber: 2,
+              title: 'المستويات والاتجاهات',
               type: LessonType.video,
               durationMinutes: 15,
               isCompleted: true,
@@ -1203,20 +1212,11 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
               isCurrent: false,
             ),
             LessonModel(
-              lessonNumber: 2,
-              title: 'المعادلات البسيطة',
-              type: LessonType.video,
-              durationMinutes: 20,
-              isCompleted: false,
-              isLocked: false,
-              isCurrent: true,
-            ),
-            LessonModel(
               lessonNumber: 3,
-              title: 'اختبار تطبيقي',
+              title: 'اختبار المصطلحات',
               type: LessonType.quiz,
               durationMinutes: 10,
-              isCompleted: false,
+              isCompleted: true,
               isLocked: false,
               isCurrent: false,
             ),
@@ -1224,10 +1224,59 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
         ),
         ChapterModel(
           chapterNumber: 2,
-          chapterName: 'الجبر المتقدم',
-          title: 'المفاهيم الجبرية المعقدة',
-          description: 'الغوص أعمق في العمليات الجبرية المتقدمة',
+          chapterName: 'الجهاز الهيكلي',
+          title: 'تشريح العظام والمفاصل',
+          description: 'دراسة شاملة للهيكل العظمي والمفاصل والأربطة',
           chapterColor: const Color(0xFF73CBFF),
+          progress: 50.0,
+          currentLesson: 2,
+          isCompleted: false,
+          isLocked: false,
+          lessons: [
+            LessonModel(
+              lessonNumber: 1,
+              title: 'عظام الجمجمة',
+              type: LessonType.video,
+              durationMinutes: 30,
+              isCompleted: true,
+              isLocked: false,
+              isCurrent: false,
+            ),
+            LessonModel(
+              lessonNumber: 2,
+              title: 'العمود الفقري',
+              type: LessonType.video,
+              durationMinutes: 25,
+              isCompleted: false,
+              isLocked: false,
+              isCurrent: true,
+            ),
+            LessonModel(
+              lessonNumber: 3,
+              title: 'عظام الأطراف',
+              type: LessonType.reading,
+              durationMinutes: 20,
+              isCompleted: false,
+              isLocked: false,
+              isCurrent: false,
+            ),
+            LessonModel(
+              lessonNumber: 4,
+              title: 'اختبار الجهاز الهيكلي',
+              type: LessonType.quiz,
+              durationMinutes: 15,
+              isCompleted: false,
+              isLocked: true,
+              isCurrent: false,
+            ),
+          ],
+        ),
+        ChapterModel(
+          chapterNumber: 3,
+          chapterName: 'الجهاز العضلي',
+          title: 'تشريح العضلات',
+          description: 'دراسة أنواع العضلات ووظائفها وتعصيبها',
+          chapterColor: const Color(0xFF4CAF50),
           progress: 0.0,
           currentLesson: 1,
           isCompleted: false,
@@ -1235,17 +1284,57 @@ class _SubjectRoadmapViewState extends State<SubjectRoadmapView>
           lessons: [
             LessonModel(
               lessonNumber: 1,
-              title: 'المعادلات التربيعية',
+              title: 'أنواع الأنسجة العضلية',
               type: LessonType.video,
-              durationMinutes: 25,
+              durationMinutes: 20,
               isCompleted: false,
               isLocked: false,
               isCurrent: false,
             ),
             LessonModel(
               lessonNumber: 2,
-              title: 'التحليل',
+              title: 'عضلات الرأس والرقبة',
+              type: LessonType.video,
+              durationMinutes: 30,
+              isCompleted: false,
+              isLocked: true,
+              isCurrent: false,
+            ),
+            LessonModel(
+              lessonNumber: 3,
+              title: 'عضلات الجذع',
               type: LessonType.reading,
+              durationMinutes: 25,
+              isCompleted: false,
+              isLocked: true,
+              isCurrent: false,
+            ),
+          ],
+        ),
+        ChapterModel(
+          chapterNumber: 4,
+          chapterName: 'الجهاز القلبي الوعائي',
+          title: 'تشريح القلب والأوعية الدموية',
+          description: 'دراسة تشريح القلب والدورة الدموية',
+          chapterColor: const Color(0xFFFF6B35),
+          progress: 0.0,
+          currentLesson: 1,
+          isCompleted: false,
+          isLocked: true,
+          lessons: [
+            LessonModel(
+              lessonNumber: 1,
+              title: 'تشريح القلب',
+              type: LessonType.video,
+              durationMinutes: 35,
+              isCompleted: false,
+              isLocked: true,
+              isCurrent: false,
+            ),
+            LessonModel(
+              lessonNumber: 2,
+              title: 'الأوعية الدموية الرئيسية',
+              type: LessonType.video,
               durationMinutes: 30,
               isCompleted: false,
               isLocked: true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/core.dart';
 
 class CustomChips extends StatefulWidget {
   final List<String> labels;
@@ -50,17 +51,18 @@ class _CustomChipsState extends State<CustomChips> {
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
-                color:
-                    isSelected
-                        ? const Color(0xff73CBFF)
-                        : const Color(0xffE8F1FF),
+                color: isSelected
+                    ? AppColors.primary
+                    : AppColors.secondary,
               ),
               child: Text(
                 widget.labels[index],
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.white : const Color(0xff202244),
+                  color: isSelected
+                      ? AppColors.background
+                      : AppColors.text,
                 ),
               ),
             ),

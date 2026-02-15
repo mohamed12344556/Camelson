@@ -1,15 +1,15 @@
-import 'package:simplify/features/bot/ai_chat_view.dart';
-import 'package:simplify/features/community/ui/logic/chat_bloc/chat_bloc.dart';
-import 'package:simplify/features/courses/ui/views/subject_roadmap_view.dart'
+import 'package:boraq/features/bot/ai_chat_view.dart';
+import 'package:boraq/features/community/ui/logic/chat_bloc/chat_bloc.dart';
+import 'package:boraq/features/courses/ui/views/subject_roadmap_view.dart'
     hide AppRoutes;
-import 'package:simplify/features/courses/ui/views/teacher_profile_view.dart';
-import 'package:simplify/features/home/ui/views/streaming_now_view.dart';
-import 'package:simplify/features/home/ui/views/top_mentors_view.dart';
-import 'package:simplify/features/profile/ui/views/dark_mode_settings_view.dart';
-import 'package:simplify/features/profile/ui/views/invite_friends_view.dart';
-import 'package:simplify/features/profile/ui/views/language_settings_view.dart';
-import 'package:simplify/features/profile/ui/views/payment_view.dart';
-import 'package:simplify/features/profile/ui/views/terms_&_conditions.dart';
+import 'package:boraq/features/courses/ui/views/teacher_profile_view.dart';
+import 'package:boraq/features/home/ui/views/streaming_now_view.dart';
+import 'package:boraq/features/home/ui/views/top_mentors_view.dart';
+import 'package:boraq/features/profile/ui/views/dark_mode_settings_view.dart';
+import 'package:boraq/features/profile/ui/views/invite_friends_view.dart';
+import 'package:boraq/features/profile/ui/views/language_settings_view.dart';
+import 'package:boraq/features/profile/ui/views/payment_view.dart';
+import 'package:boraq/features/profile/ui/views/terms_&_conditions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/core.dart';

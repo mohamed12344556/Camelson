@@ -1,4 +1,4 @@
-import 'package:simplify/core/core.dart';
+import 'package:boraq/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -177,37 +177,38 @@ class _AIChatViewState extends State<AIChatView> with TickerProviderStateMixin {
       padding: EdgeInsets.only(bottom: 16.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment:
-            message.isBot ? MainAxisAlignment.start : MainAxisAlignment.end,
+        mainAxisAlignment: message.isBot
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.end,
         children: [
           if (message.isBot) ...[_buildBotAvatar(), SizedBox(width: 12.w)],
           Flexible(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
-                color:
-                    message.isBot
-                        ? const Color(0xFF2D4F4F)
-                        : const Color(0xFF167F71),
+                color: message.isBot
+                    ? const Color(0xFF2D4F4F)
+                    : const Color(0xFF167F71),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16.r),
                   topRight: Radius.circular(16.r),
-                  bottomLeft:
-                      message.isBot ? Radius.zero : Radius.circular(16.r),
-                  bottomRight:
-                      message.isBot ? Radius.circular(16.r) : Radius.zero,
+                  bottomLeft: message.isBot
+                      ? Radius.zero
+                      : Radius.circular(16.r),
+                  bottomRight: message.isBot
+                      ? Radius.circular(16.r)
+                      : Radius.zero,
                 ),
-                gradient:
-                    message.isBot
-                        ? null
-                        : LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            const Color(0xFF167F71),
-                            const Color(0xFF0A5F53),
-                          ],
-                        ),
+                gradient: message.isBot
+                    ? null
+                    : LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          const Color(0xFF167F71),
+                          const Color(0xFF0A5F53),
+                        ],
+                      ),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.3),
@@ -265,34 +266,27 @@ class _AIChatViewState extends State<AIChatView> with TickerProviderStateMixin {
       padding: EdgeInsets.only(bottom: 16.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children:
-            actions.map((action) {
-              return Padding(
-                padding: EdgeInsets.only(bottom: 8.h),
-                child: GestureDetector(
-                  onTap: () => _sendMessage(action),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 14.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF2D2D2D),
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: Colors.grey[800]!, width: 1),
-                    ),
-                    child: Text(
-                      action,
-                      style: TextStyle(
-                        color: Colors.grey[300],
-                        fontSize: 14.sp,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+        children: actions.map((action) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: 8.h),
+            child: GestureDetector(
+              onTap: () => _sendMessage(action),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2D2D2D),
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: Border.all(color: Colors.grey[800]!, width: 1),
                 ),
-              );
-            }).toList(),
+                child: Text(
+                  action,
+                  style: TextStyle(color: Colors.grey[300], fontSize: 14.sp),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
@@ -320,19 +314,17 @@ class _AIChatViewState extends State<AIChatView> with TickerProviderStateMixin {
                 return Row(
                   children: List.generate(3, (index) {
                     final delay = index * 0.2;
-                    final animation = Tween<double>(
-                      begin: 0.0,
-                      end: 1.0,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: _typingAnimationController,
-                        curve: Interval(
-                          delay,
-                          delay + 0.6,
-                          curve: Curves.easeInOut,
-                        ),
-                      ),
-                    );
+                    final animation = Tween<double>(begin: 0.0, end: 1.0)
+                        .animate(
+                          CurvedAnimation(
+                            parent: _typingAnimationController,
+                            curve: Interval(
+                              delay,
+                              delay + 0.6,
+                              curve: Curves.easeInOut,
+                            ),
+                          ),
+                        );
 
                     return AnimatedBuilder(
                       animation: animation,

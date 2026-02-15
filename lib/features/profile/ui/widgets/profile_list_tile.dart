@@ -9,6 +9,7 @@ class ProfileListTile extends StatelessWidget {
   final IconData icon;
   final String title;
   final Widget? page;
+  final String? route;
   final String? trailing;
   final VoidCallback? onLanguageChanged;
   final bool isLogout;
@@ -18,6 +19,7 @@ class ProfileListTile extends StatelessWidget {
     required this.icon,
     required this.title,
     this.page,
+    this.route,
     this.trailing,
     this.onLanguageChanged,
     this.isLogout = false,
@@ -27,8 +29,8 @@ class ProfileListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     // Special styling for logout
     final isLogoutTile = isLogout;
-    final iconColor = isLogoutTile ? Colors.red[600] : Colors.grey[600];
-    final textColor = isLogoutTile ? Colors.red[600] : Colors.black;
+    final iconColor = isLogoutTile ? AppColors.error : AppColors.text.withValues(alpha: 0.6);
+    final textColor = isLogoutTile ? AppColors.error : AppColors.text;
 
     return ListTile(
       leading: Icon(icon, size: 24.sp, color: iconColor),
@@ -54,13 +56,16 @@ class ProfileListTile extends StatelessWidget {
             ),
           SizedBox(width: 5.w),
           if (!isLogoutTile)
-            Icon(Icons.arrow_forward_ios, size: 16.sp, color: Colors.black),
+            Icon(Icons.arrow_forward_ios, size: 16.sp, color: AppColors.text),
         ],
       ),
       onTap: () async {
         if (isLogoutTile) {
           // Handle logout
           _showLogoutDialog(context);
+        } else if (route != null) {
+          // Navigate using named route
+          await Navigator.pushNamed(context, route!);
         } else if (page != null) {
           // Navigate to page
           await Navigator.push(
@@ -104,7 +109,7 @@ class ProfileListTile extends StatelessWidget {
                 content: Text(
                   state.error.errorMessage?.message ?? 'Logout failed',
                 ),
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.error,
               ),
             );
           }
@@ -134,7 +139,7 @@ class ProfileListTile extends StatelessWidget {
                   child: Text(
                     'Cancel',
                     style: TextStyle(
-                      color: Colors.grey[600],
+                      color: AppColors.text.withValues(alpha: 0.6),
                       fontSize: 16.sp,
                     ),
                   ),
@@ -158,7 +163,7 @@ class ProfileListTile extends StatelessWidget {
                   child: Text(
                     'Logout',
                     style: TextStyle(
-                      color: Colors.red[600],
+                      color: AppColors.error,
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:simplify/features/courses/data/models/teacher_model.dart';
+import 'package:boraq/features/courses/data/models/teacher_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,12 +22,13 @@ class _TopMentorsViewState extends State<TopMentorsView> {
 
   final List<String> _subjects = [
     'All',
-    'Math',
-    'Physics',
-    'English',
-    'Arabic',
-    'Chemistry',
-    'Biology',
+    'Anatomy',
+    'Physiology',
+    'Biochemistry',
+    'Pathology',
+    'Pharmacology',
+    'Surgery',
+    'Pediatrics',
   ];
   final List<String> _sortOptions = [
     'Highest Rated',
@@ -36,95 +37,111 @@ class _TopMentorsViewState extends State<TopMentorsView> {
     'Most Experienced',
   ];
 
-  // Sample mentors data
+  // Sample mentors data - Medical Professors
   final List<TeacherModel> _allMentors = [
     TeacherModel(
       id: '1',
-      name: 'Dr. Ahmed Hassan',
-      subject: 'Physics Teacher',
+      name: 'Prof. Ahmed Hassan',
+      subject: 'Anatomy Professor',
       profileImage: 'assets/images/person2.png',
-      studentsEnrolled: 1250,
+      studentsEnrolled: 2500,
       rating: 4.9,
       description:
-          'Experienced physics teacher with 15+ years of teaching advanced physics concepts to secondary students.',
-      grades: ['1 Secondary', '2 Secondary', '3 Secondary'],
-      courses: [],
-      reviews: [],
-      yearsOfExperience: 15,
-      verified: true,
-    ),
-    TeacherModel(
-      id: '2',
-      name: 'Sarah Johnson',
-      subject: 'English Teacher',
-      profileImage: 'assets/images/person2.png',
-      studentsEnrolled: 890,
-      rating: 4.8,
-      description:
-          'Native English speaker specializing in grammar, literature, and conversation skills.',
-      grades: ['1 Secondary', '2 Secondary', '3 Secondary'],
-      courses: [],
-      reviews: [],
-      yearsOfExperience: 10,
-      verified: true,
-    ),
-    TeacherModel(
-      id: '3',
-      name: 'محمد عبدالله',
-      subject: 'Arabic Teacher',
-      profileImage: 'assets/images/person2.png',
-      studentsEnrolled: 2100,
-      rating: 4.95,
-      description:
-          'متخصص في تدريس اللغة العربية والأدب العربي لجميع المراحل الدراسية.',
-      grades: ['1 Secondary', '2 Secondary', '3 Secondary'],
+          'Professor of Human Anatomy with 20+ years of experience teaching medical students. Specialized in neuroanatomy and clinical correlations.',
+      grades: ['First Year', 'Second Year'],
       courses: [],
       reviews: [],
       yearsOfExperience: 20,
       verified: true,
     ),
     TeacherModel(
-      id: '4',
-      name: 'Dr. Emma Wilson',
-      subject: 'Chemistry Teacher',
+      id: '2',
+      name: 'Dr. Sarah Mohamed',
+      subject: 'Physiology Professor',
       profileImage: 'assets/images/person2.png',
-      studentsEnrolled: 756,
-      rating: 4.7,
+      studentsEnrolled: 2100,
+      rating: 4.8,
       description:
-          'PhD in Chemistry with passion for making complex concepts easy to understand.',
-      grades: ['2 Secondary', '3 Secondary'],
+          'Expert in human physiology with focus on cardiovascular and respiratory systems. Published researcher and dedicated medical educator.',
+      grades: ['First Year', 'Second Year'],
       courses: [],
       reviews: [],
-      yearsOfExperience: 8,
+      yearsOfExperience: 15,
+      verified: true,
+    ),
+    TeacherModel(
+      id: '3',
+      name: 'د. محمد عبدالله',
+      subject: 'أستاذ الباثولوجي',
+      profileImage: 'assets/images/person2.png',
+      studentsEnrolled: 1890,
+      rating: 4.95,
+      description:
+          'أستاذ دكتور في علم الأمراض مع خبرة واسعة في التشخيص المرضي والتدريس الإكلينيكي للطلاب.',
+      grades: ['Third Year', 'Fourth Year'],
+      courses: [],
+      reviews: [],
+      yearsOfExperience: 22,
+      verified: true,
+    ),
+    TeacherModel(
+      id: '4',
+      name: 'Prof. Layla Ibrahim',
+      subject: 'Pharmacology Professor',
+      profileImage: 'assets/images/person2.png',
+      studentsEnrolled: 1650,
+      rating: 4.7,
+      description:
+          'Professor of Pharmacology specializing in clinical pharmacology and drug interactions. Known for practical teaching approach.',
+      grades: ['Third Year', 'Fourth Year'],
+      courses: [],
+      reviews: [],
+      yearsOfExperience: 18,
       verified: true,
     ),
     TeacherModel(
       id: '5',
-      name: 'Michael Chen',
-      subject: 'Math Teacher',
+      name: 'Dr. Youssef Kamal',
+      subject: 'Surgery Professor',
       profileImage: 'assets/images/person2.png',
-      studentsEnrolled: 1890,
+      studentsEnrolled: 1420,
       rating: 4.85,
       description:
-          'Mathematics expert specializing in calculus, algebra, and problem-solving techniques.',
-      grades: ['1 Secondary', '2 Secondary', '3 Secondary'],
+          'Consultant surgeon and professor with extensive experience in general surgery and surgical education. Focus on surgical skills training.',
+      grades: ['Fifth Year', 'Sixth Year'],
       courses: [],
       reviews: [],
-      yearsOfExperience: 12,
-      verified: false,
+      yearsOfExperience: 25,
+      verified: true,
     ),
     TeacherModel(
       id: '6',
-      name: 'فاطمة الزهراء',
-      subject: 'Biology Teacher',
+      name: 'د. فاطمة الزهراء',
+      subject: 'أستاذ طب الأطفال',
       profileImage: 'assets/images/person2.png',
-      studentsEnrolled: 567,
-      rating: 4.6,
-      description: 'متخصصة في علم الأحياء مع خبرة في تدريس المناهج المتقدمة.',
-      grades: ['2 Secondary', '3 Secondary'],
+      studentsEnrolled: 1280,
+      rating: 4.9,
+      description:
+          'أستاذ دكتور في طب الأطفال مع تخصص في حديثي الولادة والعناية المركزة للأطفال.',
+      grades: ['Sixth Year'],
       courses: [],
       reviews: [],
-      yearsOfExperience: 6,
+      yearsOfExperience: 16,
+      verified: true,
+    ),
+    TeacherModel(
+      id: '7',
+      name: 'Prof. Hoda Salah',
+      subject: 'Biochemistry Professor',
+      profileImage: 'assets/images/person2.png',
+      studentsEnrolled: 1950,
+      rating: 4.75,
+      description:
+          'Professor of Medical Biochemistry with expertise in metabolism and molecular biology. Award-winning educator.',
+      grades: ['First Year', 'Second Year'],
+      courses: [],
+      reviews: [],
+      yearsOfExperience: 14,
       verified: true,
     ),
   ];
@@ -194,7 +211,7 @@ class _TopMentorsViewState extends State<TopMentorsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: AppColors.background,
       appBar: CustomAppBar(
         title: 'Top Mentors',
         onBackPressed: () {
@@ -217,9 +234,9 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 12.w),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.background,
                       borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: Colors.grey[300]!),
+                      border: Border.all(color: AppColors.text.withValues(alpha: 0.2)),
                     ),
                     child: DropdownButton<String>(
                       value: _selectedSubject,
@@ -248,9 +265,9 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                 // Sort Button
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.background,
                     borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(color: Colors.grey[300]!),
+                    border: Border.all(color: AppColors.text.withValues(alpha: 0.2)),
                   ),
                   child: PopupMenuButton<String>(
                     initialValue: _selectedSort,
@@ -276,13 +293,13 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                           Icon(
                             Icons.sort,
                             size: 20.sp,
-                            color: Colors.grey[700],
+                            color: AppColors.text.withValues(alpha: 0.7),
                           ),
                           SizedBox(width: 4.w),
                           Text(
                             'Sort',
                             style: TextStyle(
-                              color: Colors.grey[700],
+                              color: AppColors.text.withValues(alpha: 0.7),
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -305,14 +322,14 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                         Icon(
                           Icons.person_search,
                           size: 80.sp,
-                          color: Colors.grey[400],
+                          color: AppColors.text.withValues(alpha: 0.4),
                         ),
                         SizedBox(height: 16.h),
                         Text(
                           'No mentors found',
                           style: TextStyle(
                             fontSize: 18.sp,
-                            color: Colors.grey[600],
+                            color: AppColors.text.withValues(alpha: 0.6),
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -340,11 +357,11 @@ class _TopMentorsViewState extends State<TopMentorsView> {
       child: Container(
         margin: EdgeInsets.only(bottom: 16.h),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.background,
           borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: AppColors.text.withValues(alpha: 0.05),
               blurRadius: 15,
               offset: const Offset(0, 5),
             ),
@@ -361,8 +378,8 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Colors.white.withOpacity(0.9),
-                    Colors.white.withOpacity(0.8),
+                    AppColors.background.withValues(alpha: 0.9),
+                    AppColors.background.withValues(alpha: 0.8),
                   ],
                 ),
               ),
@@ -380,13 +397,13 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              AppColors.primary.withOpacity(0.1),
-                              AppColors.primary.withOpacity(0.05),
+                              AppColors.primary.withValues(alpha: 0.1),
+                              AppColors.primary.withValues(alpha: 0.05),
                             ],
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.primary.withOpacity(0.2),
+                              color: AppColors.primary.withValues(alpha: 0.2),
                               blurRadius: 20,
                               spreadRadius: 2,
                             ),
@@ -409,16 +426,16 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                             width: 24.w,
                             height: 24.h,
                             decoration: BoxDecoration(
-                              color: Colors.blue,
+                              color: AppColors.primary,
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: Colors.white,
+                                color: AppColors.background,
                                 width: 2.w,
                               ),
                             ),
                             child: Icon(
                               Icons.check,
-                              color: Colors.white,
+                              color: AppColors.background,
                               size: 14.sp,
                             ),
                           ),
@@ -452,14 +469,14 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                                 vertical: 4.h,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.amber.withOpacity(0.1),
+                                color: AppColors.accent.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
                               child: Row(
                                 children: [
                                   Icon(
                                     Icons.star,
-                                    color: Colors.amber,
+                                    color: AppColors.accent,
                                     size: 16.sp,
                                   ),
                                   SizedBox(width: 4.w),
@@ -482,7 +499,7 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                           mentor.subject,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            color: Colors.grey[600],
+                            color: AppColors.text.withValues(alpha: 0.6),
                           ),
                         ),
                         SizedBox(height: 8.h),
@@ -511,7 +528,7 @@ class _TopMentorsViewState extends State<TopMentorsView> {
                   // Arrow Icon
                   Icon(
                     Icons.arrow_forward_ios,
-                    color: Colors.grey[400],
+                    color: AppColors.text.withValues(alpha: 0.4),
                     size: 20.sp,
                   ),
                 ],
@@ -531,7 +548,7 @@ class _TopMentorsViewState extends State<TopMentorsView> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: AppColors.lightSecondary,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
@@ -549,7 +566,7 @@ class _TopMentorsViewState extends State<TopMentorsView> {
           SizedBox(width: 2.w),
           Text(
             label,
-            style: TextStyle(fontSize: 10.sp, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 10.sp, color: AppColors.text.withValues(alpha: 0.6)),
           ),
         ],
       ),

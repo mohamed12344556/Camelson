@@ -1,10 +1,10 @@
-import 'package:simplify/features/community/ui/logic/chat_bloc/chat_bloc.dart';
-import 'package:simplify/features/community/ui/logic/community_bloc/community_bloc.dart';
-import 'package:simplify/features/courses/ui/views/subject_roadmap_view.dart'
+import 'package:boraq/features/community/ui/logic/chat_bloc/chat_bloc.dart';
+import 'package:boraq/features/community/ui/logic/community_bloc/community_bloc.dart';
+import 'package:boraq/features/courses/ui/views/subject_roadmap_view.dart'
     hide AppRoutes;
-import 'package:simplify/features/profile/ui/views/edit_profile_view.dart';
-import 'package:simplify/features/profile/ui/views/invite_friends_view.dart';
-import 'package:simplify/features/profile/ui/views/payment_view.dart';
+import 'package:boraq/features/profile/ui/views/edit_profile_view.dart';
+import 'package:boraq/features/profile/ui/views/invite_friends_view.dart';
+import 'package:boraq/features/profile/ui/views/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,6 +46,7 @@ import '../../features/profile/ui/views/profile_settings_view.dart';
 import '../../features/profile/ui/views/security_settings_view.dart';
 import '../../features/profile/ui/widgets/payment_webview_screen.dart';
 import '../../features/rank/ui/views/rank_view.dart';
+import '../../features/student_dashboard/ui/views/student_dashboard_view.dart';
 import '../core.dart';
 
 class Routers {
@@ -115,6 +116,11 @@ class Routers {
           ),
         );
 
+      case AppRoutes.studentDashboardView:
+        return MaterialPageRoute(
+          builder: (_) => const StudentDashboardView(),
+        );
+
       case AppRoutes.notificationsView:
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
@@ -136,13 +142,23 @@ class Routers {
         return MaterialPageRoute(builder: (_) => const TopMentorsView());
 
       case AppRoutes.coursesView:
-        return MaterialPageRoute(builder: (_) => const CoursesView());
+        final args = arguments as Map<String, dynamic>?;
+        final selectedYear = args?['year'] as String?;
+        return MaterialPageRoute(
+          builder: (_) => CoursesView(selectedYear: selectedYear),
+        );
 
       case AppRoutes.librariesView:
         return MaterialPageRoute(builder: (_) => const LibrariesView());
 
       case AppRoutes.courseDetailsView:
-        return MaterialPageRoute(builder: (_) => CourseDetailsView());
+        final args = arguments as Map<String, dynamic>?;
+        final courseData = args?['courseData'];
+        return MaterialPageRoute(
+          builder: (_) => CourseDetailsView(
+            courseData: courseData is Map<String, dynamic> ? courseData : null,
+          ),
+        );
 
       case AppRoutes.courseContentsView:
         return MaterialPageRoute(builder: (_) => CourseContentsView());

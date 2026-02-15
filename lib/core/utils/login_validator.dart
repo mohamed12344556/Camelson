@@ -1,5 +1,5 @@
 // lib/core/utils/login_validator.dart
-import 'package:simplify/generated/l10n.dart';
+import 'package:boraq/generated/l10n.dart';
 
 // class LoginValidator {
 //   static bool isTeacherEmail(String email) {

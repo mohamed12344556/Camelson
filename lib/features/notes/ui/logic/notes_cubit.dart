@@ -1,7 +1,7 @@
-import 'package:simplify/core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../../../core/core.dart';
 import '../../data/models/note_model.dart';
 import '../../data/repos/notes_repo.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
@@ -31,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final defaultBackgroundColor = isDarkMode ? Colors.black : Colors.white;
+    final defaultBackgroundColor = isDarkMode ? AppColors.darkBackground : AppColors.background;
     final effectiveBackgroundColor = backgroundColor ?? defaultBackgroundColor;
 
     return AppBar(
@@ -76,7 +77,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       return _buildCustomBackButton(context, isDarkMode);
     } else {
       return BackButton(
-        color: (bgColor == Colors.white) ? Colors.black : Colors.white,
+        color: (bgColor == AppColors.background) ? AppColors.text : AppColors.background,
         onPressed: onBackPressed,
       );
     }
@@ -86,11 +87,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Container(
       margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.grey[800] : Colors.white,
+        color: isDarkMode ? AppColors.darkSecondary : AppColors.background,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: (isDarkMode ? Colors.white : Colors.black).withOpacity(0.08),
+            color: (isDarkMode ? AppColors.darkText : AppColors.text).withValues(alpha: 0.08),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -99,7 +100,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: IconButton(
         icon: Icon(
           Icons.arrow_back_ios_new,
-          color: isDarkMode ? Colors.white : const Color(0xFF374151),
+          color: isDarkMode ? AppColors.darkText : AppColors.text,
           size: 18,
         ),
         onPressed: onBackPressed ?? () => Navigator.pop(context),

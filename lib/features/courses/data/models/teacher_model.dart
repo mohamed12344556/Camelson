@@ -202,66 +202,89 @@ class TeacherReview {
   }
 }
 
-// Sample data
+// Sample data - Medical Professor
 final sampleTeacher = TeacherModel(
   id: 'teacher_1',
-  name: 'Mr Ahmed',
-  subject: 'English Teacher',
-  profileImage: 'assets/images/teacher.png',
-  studentsEnrolled: 50,
+  name: 'Prof. Ahmed Hassan',
+  subject: 'Anatomy Professor',
+  profileImage: 'assets/images/person2.png',
+  studentsEnrolled: 2500,
   rating: 4.9,
   description:
-      'Lorem ipsum dolor sit amet consectetur. Consectetur bibendum sem eros nisl sem ut sed nunc. Porttitor sit in quis malesuada egestas elit vitae. Sed nam donec habitasse neque tortor augue vel. Eleifend nam quis in eu cras elementum.',
-  grades: ['1 Secondary', '2 Secondary', '3 Secondary'],
-  yearsOfExperience: 10, // Added field
-  verified: true, // Added field
+      'Professor of Human Anatomy with over 20 years of experience in medical education. Specialized in neuroanatomy, clinical anatomy, and surgical anatomy. Published numerous research papers and textbooks on anatomical sciences. Passionate about teaching medical students through interactive lectures and clinical correlations.',
+  grades: ['First Year', 'Second Year', 'Third Year'],
+  yearsOfExperience: 20,
+  verified: true,
   courses: [
     TeacherCourse(
-      id: 'course_3_sec',
-      grade: '3 Secondary',
-      price: '499\$',
-      totalVideos: 20,
-      studentProgress: 45.0, // للطلاب المسجلين فقط
+      id: 'course_anatomy_1st',
+      grade: 'First Year',
+      price: '850 EGP',
+      totalVideos: 45,
+      studentProgress: 65.0, // للطلاب المسجلين فقط
       lessons: [
         CourseLessonItem(
           id: '1',
-          title: 'Basic Grammars',
-          subtitle: 'Learning Basic Drawing letters',
+          title: 'Introduction to Human Anatomy',
+          subtitle: 'Overview of anatomical terminology and body systems',
           isFree: true,
           isLocked: false,
-          thumbnailUrl: 'assets/images/video_thumb.png',
+          thumbnailUrl: 'assets/images/learning.png',
         ),
         CourseLessonItem(
           id: '2',
-          title: 'Basic Grammars',
-          subtitle: 'Learning Basic Drawing letters',
+          title: 'Skeletal System - Part 1',
+          subtitle: 'Axial skeleton: Skull and vertebral column',
           isFree: false,
           isLocked: false,
-          thumbnailUrl: 'assets/images/video_thumb.png',
+          thumbnailUrl: 'assets/images/learning.png',
         ),
-        // Add more lessons...
+        CourseLessonItem(
+          id: '3',
+          title: 'Muscular System',
+          subtitle: 'Major muscle groups and their clinical significance',
+          isFree: false,
+          isLocked: true,
+          thumbnailUrl: 'assets/images/learning.png',
+        ),
+        CourseLessonItem(
+          id: '4',
+          title: 'Cardiovascular System',
+          subtitle: 'Heart anatomy and major blood vessels',
+          isFree: false,
+          isLocked: true,
+          thumbnailUrl: 'assets/images/learning.png',
+        ),
       ],
     ),
   ],
   reviews: [
     TeacherReview(
       id: '1',
-      studentName: 'Mohamed',
+      studentName: 'Ahmed Mohamed',
       studentImage: '',
-      studentGrade: '1 secondary',
+      studentGrade: 'First Year Medical Student',
       rating: 5,
-      comment: 'Best Teacher',
+      comment: 'Excellent professor! His lectures make anatomy easy to understand with great clinical correlations.',
       datePosted: DateTime.now().subtract(Duration(days: 7)),
     ),
     TeacherReview(
       id: '2',
-      studentName: 'Mohamed',
+      studentName: 'Sarah Ali',
       studentImage: '',
-      studentGrade: '2 secondary',
-      rating: 4,
-      comment: 'Best Teacher',
+      studentGrade: 'Second Year Medical Student',
+      rating: 5,
+      comment: 'Best anatomy professor I have ever had. Very detailed explanations and helpful exam preparation.',
       datePosted: DateTime.now().subtract(Duration(days: 14)),
     ),
-    // Add more reviews...
+    TeacherReview(
+      id: '3',
+      studentName: 'Youssef Ibrahim',
+      studentImage: '',
+      studentGrade: 'First Year Medical Student',
+      rating: 4.5,
+      comment: 'Great teaching style with practical examples. Highly recommend his courses!',
+      datePosted: DateTime.now().subtract(Duration(days: 21)),
+    ),
   ],
 );

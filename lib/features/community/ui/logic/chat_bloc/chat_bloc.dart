@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:developer' as developer;
 import 'dart:math';
 
-import 'package:simplify/core/api/token_manager.dart';
-import 'package:simplify/core/core.dart';
+import 'package:boraq/core/api/token_manager.dart';
+import 'package:boraq/core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 

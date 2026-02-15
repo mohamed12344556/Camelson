@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'simplify_app.dart';
+import 'boraq_app.dart';
 import 'core/api/google_sign_in_service.dart';
 import 'core/cache/onboarding_manager.dart';
 import 'core/constants/key_strings.dart';
@@ -67,7 +67,7 @@ Future<void> main() async {
   log('Main - hasValidSession: $hasValidSession');
 
   runApp(
-    SimplifyApp(
+    boraqApp(
       appRouter: Routers(),
       hasValidSession: hasValidSession,
       hasSeenOnboarding: hasSeenOnboarding,

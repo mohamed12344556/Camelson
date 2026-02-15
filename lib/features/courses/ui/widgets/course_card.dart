@@ -13,11 +13,11 @@ class CourseCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.background,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppColors.text.withValues(alpha: 0.05),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -26,7 +26,10 @@ class CourseCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           // Navigate to course details
-          context.pushNamed(AppRoutes.courseDetailsView, arguments: course);
+          context.pushNamed(
+            AppRoutes.courseDetailsView,
+            arguments: {'courseData': course.toJson()},
+          );
           context.showSuccessSnackBar('Opening ${course.title}');
         },
         borderRadius: BorderRadius.circular(12),
@@ -57,7 +60,7 @@ class CourseCard extends StatelessWidget {
                       course.subject,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.orange,
+                        color: AppColors.primary,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -68,7 +71,7 @@ class CourseCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: AppColors.text,
                       ),
                     ),
 
@@ -80,7 +83,7 @@ class CourseCard extends StatelessWidget {
                           course.instructor,
                           style: const TextStyle(
                             fontSize: 12,
-                            color: Colors.blue,
+                            color: AppColors.primary,
                           ),
                         ),
                       ),
@@ -90,7 +93,7 @@ class CourseCard extends StatelessWidget {
                     // Rating and student count
                     Row(
                       children: [
-                        const Icon(Icons.star, color: Colors.amber, size: 16),
+                        const Icon(Icons.star, color: AppColors.accent, size: 16),
                         const SizedBox(width: 4),
                         Text(
                           course.rating.toString(),
@@ -100,16 +103,16 @@ class CourseCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        const Text(
+                        Text(
                           '|',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(color: AppColors.text.withValues(alpha: 0.6), fontSize: 16),
                         ),
                         const SizedBox(width: 10),
                         Text(
                           '${course.studentsCount} Std',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
-                            color: Colors.grey,
+                            color: AppColors.text.withValues(alpha: 0.6),
                           ),
                         ),
 
@@ -121,9 +124,9 @@ class CourseCard extends StatelessWidget {
                               children: [
                                 Text(
                                   course.progress,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 12,
-                                    color: Colors.grey,
+                                    color: AppColors.text.withValues(alpha: 0.6),
                                   ),
                                 ),
                               ],
@@ -142,8 +145,8 @@ class CourseCard extends StatelessWidget {
                             value:
                                 course.progress.length /
                                 100, // Estimate from image
-                            backgroundColor: Colors.grey[200],
-                            color: Colors.amber,
+                            backgroundColor: AppColors.lightSecondary,
+                            color: AppColors.accent,
                             minHeight: 6,
                           ),
                         ),

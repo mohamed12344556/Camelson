@@ -1,5 +1,5 @@
-import 'package:simplify/core/constants/roadmap_constants.dart';
-import 'package:simplify/features/courses/ui/widgets/roadmap_widgets.dart';
+import 'package:boraq/core/constants/roadmap_constants.dart';
+import 'package:boraq/features/courses/ui/widgets/roadmap_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/roadmap_data_models.dart';

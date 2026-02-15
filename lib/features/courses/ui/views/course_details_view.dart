@@ -10,14 +10,16 @@ import '../widgets/instructor_course_section.dart';
 import '../widgets/reviews_course_section.dart';
 
 class CourseDetailsView extends StatefulWidget {
-  const CourseDetailsView({super.key});
+  final Map<String, dynamic>? courseData;
+
+  const CourseDetailsView({super.key, this.courseData});
 
   @override
   State<CourseDetailsView> createState() => _CourseDetailsViewState();
 }
 
 class _CourseDetailsViewState extends State<CourseDetailsView> {
-  final course = Course.fromJson(graphicDesignCourseData);
+  late final Course course;
 
   final ScrollController _scrollController = ScrollController();
   double _thumbnailHeight = 0;
@@ -27,10 +29,63 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
   @override
   void initState() {
     super.initState();
+    // Use provided courseData or fallback to default data
+    if (widget.courseData != null) {
+      // Convert library data to course format
+      try {
+        final courseData = _convertLibraryDataToCourseData(widget.courseData!);
+        course = Course.fromJson(courseData);
+      } catch (e) {
+        // If conversion fails, use default data
+        course = Course.fromJson(graphicDesignCourseData);
+      }
+    } else {
+      course = Course.fromJson(graphicDesignCourseData);
+    }
+
     _thumbnailHeight = 0.30; // Initial height percentage
 
     // Add scroll listener for animations
     _scrollController.addListener(_scrollListener);
+  }
+
+  // Convert library card data to course format
+  Map<String, dynamic> _convertLibraryDataToCourseData(
+    Map<String, dynamic> libraryData,
+  ) {
+    return {
+      'id': libraryData['title'] ?? 'unknown',
+      'title': libraryData['title'] ?? 'Unknown Course',
+      'subject': libraryData['year'] ?? 'Medical',
+      'description': libraryData['description'] ?? '',
+      'instructor': 'Dr. Ahmed Hassan', // Default instructor
+      'rating': 4.8,
+      'thumbnailUrl': libraryData['image'] ?? 'assets/images/learning.png',
+      'price': (libraryData['price'] ?? 0).toDouble(),
+      'sections': [
+        {
+          'id': '01',
+          'title': 'Introduction',
+          'totalDurationMinutes': 90,
+          'lessons': [
+            {
+              'id': '01',
+              'title': 'Getting Started',
+              'durationMinutes': 45,
+              'isCompleted': false,
+              'videoUrl': 'assets/videos/intro.mp4',
+            },
+            {
+              'id': '02',
+              'title': 'Course Overview',
+              'durationMinutes': 45,
+              'isCompleted': false,
+              'videoUrl': 'assets/videos/overview.mp4',
+            },
+          ],
+        },
+      ],
+    };
   }
 
   @override
@@ -66,7 +121,7 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.text,
         actions: [
           BuildActionsIcons(
             iconPath: 'assets/svgs/favoret.svg',
@@ -100,7 +155,7 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
                 // قسم الصورة المصغرة للكورس
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
-                  color: Colors.black,
+                  color: AppColors.text,
                   height: MediaQuery.of(context).size.height * _thumbnailHeight,
                   child: Stack(
                     children: [
@@ -116,7 +171,7 @@ class _CourseDetailsViewState extends State<CourseDetailsView> {
                 //? Details Section
                 CourseDetailSection(course: course),
                 //? Instructor Section
-                InstructorCourseSection(),
+                InstructorCourseSection(course: course),
                 //? Reviews Section
                 ReviewsCourseSection(),
                 //? Enroll Course Button Section

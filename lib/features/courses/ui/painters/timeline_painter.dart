@@ -1,4 +1,4 @@
-import 'package:simplify/features/courses/data/models/roadmap_data_models.dart';
+import 'package:boraq/features/courses/data/models/roadmap_data_models.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/subject_roadmap_model.dart';

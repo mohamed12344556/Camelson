@@ -89,6 +89,7 @@ class Course {
   final String thumbnailUrl;
   final List<CourseSection> sections;
   final double price;
+  final String subject; // Medical subject like "Anatomy", "Physiology", etc.
 
   Course({
     required this.id,
@@ -99,6 +100,7 @@ class Course {
     required this.thumbnailUrl,
     required this.sections,
     required this.price,
+    required this.subject,
   });
 
   // حساب إجمالي مدة الدورة بالدقائق
@@ -128,6 +130,7 @@ class Course {
               .map((section) => CourseSection.fromJson(section))
               .toList(),
       price: json['price'].toDouble(),
+      subject: json['subject'] ?? 'Medical',
     );
   }
 
@@ -142,66 +145,145 @@ class Course {
       'thumbnailUrl': thumbnailUrl,
       'sections': sections.map((section) => section.toJson()).toList(),
       'price': price,
+      'subject': subject,
     };
   }
 }
 
 final graphicDesignCourseData = {
-  'id': 'gd-101',
-  'title': 'Graphic Design Fundamentals',
+  'id': 'med-anatomy-101',
+  'title': 'Human Anatomy - Complete Course',
+  'subject': 'Anatomy',
   'description':
-      'Learn the basics of graphic design and apply them to real projects,Learn the basics of graphic design and apply them to real projects,Learn the basics of graphic design and apply them to real projects,Learn the basics of graphic design and apply them to real projects,Learn the basics of graphic design and apply them to real projects',
-  'instructor': 'محمد أحمد',
-  'rating': 4.5,
-  'thumbnailUrl': 'assets/images/arabic.png',
-  'price': 12.0,
+      'Comprehensive human anatomy course covering all major body systems. Learn anatomical structures, functions, and clinical correlations essential for medical practice. Includes detailed lectures on skeletal, muscular, cardiovascular, respiratory, digestive, nervous, and reproductive systems with clinical case studies and examination preparation.',
+  'instructor': 'Prof. Ahmed Hassan',
+  'rating': 4.9,
+  'thumbnailUrl': 'assets/images/learning.png',
+  'price': 850.0,
   'sections': [
     {
       'id': '01',
-      'title': 'Introduction',
-      'totalDurationMinutes': 25,
+      'title': 'Introduction to Anatomy',
+      'totalDurationMinutes': 90,
       'lessons': [
         {
           'id': '01',
-          'title': 'Why Using Graphic Design',
-          'durationMinutes': 15,
+          'title': 'Anatomical Terminology and Body Planes',
+          'durationMinutes': 45,
           'isCompleted': false,
-          'videoUrl': 'assets/videos/intro_why.mp4',
+          'videoUrl': 'assets/videos/anatomy_intro_terminology.mp4',
         },
         {
           'id': '02',
-          'title': 'Setup Your Graphic Design Environment',
-          'durationMinutes': 10,
+          'title': 'Basic Anatomical Structures and Systems Overview',
+          'durationMinutes': 45,
           'isCompleted': false,
-          'videoUrl': 'assets/videos/intro_setup.mp4',
+          'videoUrl': 'assets/videos/anatomy_intro_systems.mp4',
         },
       ],
     },
     {
       'id': '02',
-      'title': 'Solve Quizes',
-      'totalDurationMinutes': 55,
+      'title': 'Skeletal System',
+      'totalDurationMinutes': 180,
       'lessons': [
         {
           'id': '01',
-          'title': 'Solve Quizes',
-          'durationMinutes': 55,
+          'title': 'Axial Skeleton - Skull and Vertebral Column',
+          'durationMinutes': 60,
           'isCompleted': false,
-          'videoUrl': 'assets/videos/quiz.mp4',
+          'videoUrl': 'assets/videos/skeletal_axial.mp4',
         },
         {
           'id': '02',
-          'title': 'Solve Quizes',
-          'durationMinutes': 55,
+          'title': 'Appendicular Skeleton - Upper Limb',
+          'durationMinutes': 60,
           'isCompleted': false,
-          'videoUrl': 'assets/videos/quiz.mp4',
+          'videoUrl': 'assets/videos/skeletal_upper.mp4',
         },
         {
           'id': '03',
-          'title': 'Solve Quizes',
-          'durationMinutes': 55,
+          'title': 'Appendicular Skeleton - Lower Limb',
+          'durationMinutes': 60,
           'isCompleted': false,
-          'videoUrl': 'assets/videos/quiz.mp4',
+          'videoUrl': 'assets/videos/skeletal_lower.mp4',
+        },
+      ],
+    },
+    {
+      'id': '03',
+      'title': 'Muscular System',
+      'totalDurationMinutes': 150,
+      'lessons': [
+        {
+          'id': '01',
+          'title': 'Muscle Types and Structure',
+          'durationMinutes': 50,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/muscle_types.mp4',
+        },
+        {
+          'id': '02',
+          'title': 'Major Muscle Groups and Functions',
+          'durationMinutes': 50,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/muscle_groups.mp4',
+        },
+        {
+          'id': '03',
+          'title': 'Clinical Correlations - Muscle Disorders',
+          'durationMinutes': 50,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/muscle_clinical.mp4',
+        },
+      ],
+    },
+    {
+      'id': '04',
+      'title': 'Cardiovascular System',
+      'totalDurationMinutes': 120,
+      'lessons': [
+        {
+          'id': '01',
+          'title': 'Heart Anatomy and Circulation',
+          'durationMinutes': 60,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/cardio_heart.mp4',
+        },
+        {
+          'id': '02',
+          'title': 'Major Blood Vessels and Pathways',
+          'durationMinutes': 60,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/cardio_vessels.mp4',
+        },
+      ],
+    },
+    {
+      'id': '05',
+      'title': 'Nervous System',
+      'totalDurationMinutes': 200,
+      'lessons': [
+        {
+          'id': '01',
+          'title': 'Central Nervous System - Brain Anatomy',
+          'durationMinutes': 70,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/neuro_brain.mp4',
+        },
+        {
+          'id': '02',
+          'title': 'Spinal Cord and Peripheral Nerves',
+          'durationMinutes': 65,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/neuro_spinal.mp4',
+        },
+        {
+          'id': '03',
+          'title': 'Cranial Nerves and Clinical Testing',
+          'durationMinutes': 65,
+          'isCompleted': false,
+          'videoUrl': 'assets/videos/neuro_cranial.mp4',
         },
       ],
     },

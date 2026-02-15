@@ -24,7 +24,7 @@ class CustomAppBarWidget extends StatelessWidget
     String notificationCount = '100';
 
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       elevation: 0,
       automaticallyImplyLeading: false,
       toolbarHeight: 60.h,
@@ -62,7 +62,7 @@ class CustomAppBarWidget extends StatelessWidget
         _handleNotesTap(context);
         context.setNavBarVisible(false);
       },
-      backgroundColor: AppColors.lightBlue.withValues(alpha: 0.8),
+      backgroundColor: AppColors.primary.withValues(alpha: 0.8),
       child: Image.asset('assets/images/notes.png', width: 35.w, height: 35.h),
     );
   }
@@ -93,7 +93,7 @@ class CustomAppBarWidget extends StatelessWidget
       label: Text(
         displayCount,
         style: TextStyle(
-          color: Colors.white,
+          color: AppColors.background,
           fontSize: 10.sp,
           fontWeight: FontWeight.bold,
         ),
@@ -101,7 +101,7 @@ class CustomAppBarWidget extends StatelessWidget
       backgroundColor: const Color(0xffFF6B2C),
       child: Icon(
         Icons.notifications_none_sharp,
-        color: Colors.white,
+        color: AppColors.background,
         size: 35.sp,
       ),
     );
@@ -141,9 +141,9 @@ class CustomAppBarWidget extends StatelessWidget
     } catch (e) {
       log('Error navigating to notifications: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('حدث خطأ في فتح الإشعارات'),
-          backgroundColor: Colors.red,
+        SnackBar(
+          content: const Text('حدث خطأ في فتح الإشعارات'),
+          backgroundColor: AppColors.error,
         ),
       );
     }

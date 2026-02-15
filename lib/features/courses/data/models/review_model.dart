@@ -73,36 +73,46 @@ class ReviewModel {
   }
 }
 
-// example of usage:
+// Medical course reviews data
 final reviewsData = [
   ReviewModel(
     id: '1',
-    username: 'Heather S. McMullen',
-    rating: 4.2,
+    username: 'Ahmed Mohamed',
+    rating: 5.0,
     reviewText:
-        'The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse....,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...,The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les essesdfsfsdfdsfsfsfsfsdfsd',
-    likes: 760,
-    timeAgo: '2 Weeks Ago',
-    datePosted: DateTime.now().subtract(const Duration(days: 14)),
+        'Excellent anatomy course! Prof. Ahmed Hassan explains complex concepts in a very clear and understandable way. The clinical correlations are particularly helpful for understanding real-world applications. Highly recommend for first-year medical students!',
+    likes: 342,
+    timeAgo: '1 Week Ago',
+    datePosted: DateTime.now().subtract(const Duration(days: 7)),
   ),
   ReviewModel(
     id: '2',
-    username: 'Heather S. McMullen',
-    rating: 4.2,
+    username: 'Sarah Ali',
+    rating: 4.8,
     reviewText:
-        'The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...',
-    likes: 760,
+        'Great course with detailed explanations and high-quality diagrams. The skeletal and muscular system lectures were especially comprehensive. Would have loved more quiz questions for practice, but overall very satisfied with the content.',
+    likes: 289,
     timeAgo: '2 Weeks Ago',
     datePosted: DateTime.now().subtract(const Duration(days: 14)),
   ),
   ReviewModel(
     id: '3',
-    username: 'Heather S. McMullen',
-    rating: 4.2,
+    username: 'Youssef Ibrahim',
+    rating: 4.9,
     reviewText:
-        'The Course is Very Good dolor sit amet, con sect tur adipiscing elit. Naturales divitas digit parab les esse...',
-    likes: 760,
-    timeAgo: '2 Weeks Ago',
-    datePosted: DateTime.now().subtract(const Duration(days: 14)),
+        'Outstanding teaching style! The professor makes anatomy interesting and memorable. The lectures on the cardiovascular system and nervous system were incredibly detailed. Perfect preparation for medical school exams.',
+    likes: 425,
+    timeAgo: '3 Weeks Ago',
+    datePosted: DateTime.now().subtract(const Duration(days: 21)),
+  ),
+  ReviewModel(
+    id: '4',
+    username: 'Layla Hassan',
+    rating: 5.0,
+    reviewText:
+        'Best anatomy course I have taken! The explanations are crystal clear and the visual aids are excellent. Helped me tremendously in understanding complex anatomical structures. Worth every penny!',
+    likes: 198,
+    timeAgo: '1 Month Ago',
+    datePosted: DateTime.now().subtract(const Duration(days: 30)),
   ),
 ];

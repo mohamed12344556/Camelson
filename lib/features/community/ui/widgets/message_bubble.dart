@@ -1,5 +1,5 @@
-import 'package:simplify/features/community/ui/logic/chat_bloc/chat_bloc.dart';
-import 'package:simplify/features/community/ui/logic/chat_bloc/chat_event.dart';
+import 'package:boraq/features/community/ui/logic/chat_bloc/chat_bloc.dart';
+import 'package:boraq/features/community/ui/logic/chat_bloc/chat_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

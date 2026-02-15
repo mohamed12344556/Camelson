@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/core.dart';
+import '../../data/models/course_section.dart';
 import '../../data/models/teacher_model.dart';
 
 class InstructorCourseSection extends StatelessWidget {
-  final String instructorName;
-  final String subject;
-  final String? instructorImage;
+  final Course? course;
 
-  const InstructorCourseSection({
+  InstructorCourseSection({
     super.key,
-    this.instructorName = "Ahmed Ali",
-    this.subject = "Arabic",
-    this.instructorImage,
+    this.course,
   });
+
+  // Medical course benefits
+  static final List<String> _courseBenefits = [
+    'Master anatomical structures and terminology',
+    'Understand body systems and their functions',
+    'Learn clinical correlations for medical practice',
+    'Access high-quality video lectures',
+    'Study with detailed illustrations and diagrams',
+    'Prepare effectively for medical exams',
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final instructorName = course?.instructor ?? 'Prof. Ahmed Hassan';
+    final subject = course?.subject ?? 'Anatomy';
+
     return Container(
       margin: const EdgeInsets.all(16),
       child: Column(
@@ -26,7 +36,7 @@ class InstructorCourseSection extends StatelessWidget {
           Text(
             "Instructor",
             style: TextStyle(
-              color: Colors.black,
+              color: AppColors.text,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -34,21 +44,8 @@ class InstructorCourseSection extends StatelessWidget {
           InkWell(
             onTap: () {
               // Navigate to Teacher Profile
-              // Create a sample teacher model for navigation
-              final teacher = TeacherModel(
-                id: 'teacher_1',
-                name: instructorName,
-                subject: '$subject Teacher',
-                profileImage: instructorImage ?? 'assets/images/teacher.png',
-                studentsEnrolled: 40,
-                rating: 4.9,
-                description: 'Lorem ipsum dolor sit amet consectetur...',
-                grades: ['1 Secondary', '2 Secondary', '3 Secondary'],
-                courses: [], // Will be populated from backend
-                reviews: [], // Will be populated from backend
-              );
-
-              context.pushNamed(AppRoutes.teacherProfile, arguments: teacher);
+              // Use sample teacher data
+              context.pushNamed(AppRoutes.teacherProfile, arguments: sampleTeacher);
             },
             borderRadius: BorderRadius.circular(8),
             child: Padding(
@@ -59,50 +56,50 @@ class InstructorCourseSection extends StatelessWidget {
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: AppColors.lightSecondary,
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage(
-                          instructorImage ?? 'assets/images/teacher.png',
-                        ),
+                        image: AssetImage('assets/images/person2.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        instructorName,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          instructorName,
+                          style: TextStyle(
+                            color: AppColors.text,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        subject,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                        SizedBox(height: 5),
+                        Text(
+                          '$subject Professor',
+                          style: TextStyle(
+                            color: AppColors.text.withValues(alpha: 0.7),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  Spacer(),
-                  Icon(Icons.chat_outlined, color: Colors.black),
+                  Icon(Icons.arrow_forward_ios, color: AppColors.text.withValues(alpha: 0.6), size: 18),
                 ],
               ),
             ),
           ),
-          Divider(color: Colors.grey[300], thickness: 1),
+          Divider(color: AppColors.lightSecondary, thickness: 1),
           Text(
             "What you'll Get",
             style: TextStyle(
-              color: Colors.black,
+              color: AppColors.text,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -110,21 +107,27 @@ class InstructorCourseSection extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
             child: ListView.builder(
-              itemCount: 6,
+              itemCount: _courseBenefits.length,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: Row(
-                    spacing: 10,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.check, color: Colors.green),
-                      Text(
-                        "Learn Storytelling",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        margin: EdgeInsets.only(top: 2),
+                        child: Icon(Icons.check_circle, color: AppColors.primary, size: 20),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          _courseBenefits[index],
+                          style: TextStyle(
+                            color: AppColors.text.withValues(alpha: 0.87),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ],

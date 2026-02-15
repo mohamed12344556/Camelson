@@ -1,10 +1,9 @@
 // constants.dart
 import 'dart:developer';
 
-import 'package:simplify/core/core.dart';
-
 import '../api/google_sign_in_service.dart';
 import '../api/token_manager.dart';
+import '../core.dart';
 
 class AppConstants {
   const AppConstants._();

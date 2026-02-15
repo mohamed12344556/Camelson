@@ -18,4 +18,17 @@ class CourseModel {
     required this.isFree,
     required this.image,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'subject': subject,
+      'instructor': instructor,
+      'rating': rating,
+      'studentsCount': studentsCount,
+      'progress': progress,
+      'isFree': isFree,
+      'image': image,
+    };
+  }
 }

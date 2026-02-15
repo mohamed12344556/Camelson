@@ -77,13 +77,21 @@ class NavigationManager extends ChangeNotifier {
 
   /// Navigate to specific route in specific tab
   void navigateToRoute(int tabIndex, String route, {Object? arguments}) {
-    if (tabIndex < 0 || tabIndex >= _tabsState.length) return;
+    if (tabIndex < 0 || tabIndex >= _tabsState.length) {
+      debugPrint('❌ NavigationManager: Invalid tab index $tabIndex');
+      return;
+    }
 
     final currentState = _tabsState[tabIndex]!;
     final navigatorKey = currentState.navigatorKey;
 
+    debugPrint('🔄 NavigationManager: Navigating to $route in tab $tabIndex');
+    debugPrint('📦 Arguments: $arguments');
+    debugPrint('🔑 Navigator key current state: ${navigatorKey.currentState}');
+
     // Navigate using navigator - the observer will update the state
-    navigatorKey.currentState?.pushNamed(route, arguments: arguments);
+    final result = navigatorKey.currentState?.pushNamed(route, arguments: arguments);
+    debugPrint('✅ Navigation result: $result');
   }
 
   /// Navigate in current tab

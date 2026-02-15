@@ -197,6 +197,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../../../../core/core.dart';
 
 class BuildBanner extends StatefulWidget {
   final List<Map<String, String>> bannersData;
@@ -362,7 +363,7 @@ class _BuildBannerState extends State<BuildBanner> {
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppColors.background,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -370,7 +371,7 @@ class _BuildBannerState extends State<BuildBanner> {
                     banner['subtitle'] ?? '',
                     style: const TextStyle(
                       fontSize: 14,
-                      color: Colors.white,
+                      color: AppColors.background,
                     ),
                   ),
                 ],

@@ -41,7 +41,7 @@ class _ProfileSettingsViewState extends State<ProfileSettingsView> {
     return Scaffold(
       backgroundColor:
           isDarkMode ? const Color(0xFF1A1A1A) : const Color(0xFFF5F9FF),
-      appBar: CustomAppBar(title: 'Profile Settings'),
+      appBar: CustomAppBar(title: context.isArabic ? 'اعدادات الملف الشخصي' : 'Profile Settings'),
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           final isLoading =
@@ -52,7 +52,7 @@ class _ProfileSettingsViewState extends State<ProfileSettingsView> {
               padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 18.h),
               child: Container(
                 decoration: BoxDecoration(
-                  color: isDarkMode ? const Color(0xFF2A2A2A) : Colors.white,
+                  color: isDarkMode ? const Color(0xFF2A2A2A) : AppColors.background,
                   borderRadius: BorderRadius.circular(40.r),
                 ),
                 child: Column(
@@ -83,6 +83,7 @@ class _ProfileSettingsViewState extends State<ProfileSettingsView> {
                           icon: option['icon'],
                           title: option['title'],
                           page: option['page'],
+                          route: option['route'],
                           trailing: option['trailing'],
                           isLogout: option['isLogout'] ?? false,
                           onLanguageChanged: option['title'] == 'Language'
