@@ -846,9 +846,11 @@ class _LectureDetailViewState extends State<LectureDetailView>
 
   @override
   void dispose() {
-    _videoPlayerController.dispose();
-    _customVideoPlayerController.dispose();
     _tabController.dispose();
+    if (_isVideoInitialized) {
+      _customVideoPlayerController.dispose();
+    }
+    _videoPlayerController.dispose();
     super.dispose();
   }
 
@@ -960,26 +962,342 @@ class _LectureDetailViewState extends State<LectureDetailView>
   }
 
   Widget _buildSlidesTab() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.slideshow,
-            size: 80,
-            color: AppColors.text.withValues(alpha: 0.4),
+    // Generate slides based on lecture content
+    final slides = _generateLectureSlides();
+
+    return ListView.builder(
+      padding: EdgeInsets.all(16),
+      itemCount: slides.length,
+      itemBuilder: (context, index) {
+        final slide = slides[index];
+        return Card(
+          margin: EdgeInsets.only(bottom: 16),
+          elevation: 3,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
-          SizedBox(height: 16),
-          Text(
-            'Lecture slides will appear here',
-            style: TextStyle(
-              fontSize: 18,
-              color: AppColors.text.withValues(alpha: 0.6),
+          child: InkWell(
+            onTap: () {
+              // View full slide
+            },
+            borderRadius: BorderRadius.circular(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Slide preview
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFFF4B400).withValues(alpha: 0.3),
+                        Color(0xFFF4B400).withValues(alpha: 0.1),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                    ),
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          slide['icon'] as IconData,
+                          size: 60,
+                          color: Color(0xFFF4B400),
+                        ),
+                        SizedBox(height: 12),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            slide['title'] as String,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.text,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                // Slide info
+                Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF4B400).withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              'Slide ${index + 1}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFF4B400),
+                              ),
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.remove_red_eye_outlined,
+                            size: 16,
+                            color: AppColors.text.withValues(alpha: 0.5),
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            'View',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.text.withValues(alpha: 0.6),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        slide['description'] as String,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.text.withValues(alpha: 0.7),
+                          height: 1.4,
+                        ),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      if ((slide['points'] as List).isNotEmpty) ...[
+                        SizedBox(height: 12),
+                        Wrap(
+                          spacing: 6,
+                          runSpacing: 6,
+                          children: (slide['points'] as List<String>)
+                              .take(3)
+                              .map(
+                                (point) => Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.text.withValues(alpha: 0.05),
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: AppColors.text.withValues(alpha: 0.1),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    point,
+                                    style: TextStyle(
+                                      fontSize: 11,
+                                      color: AppColors.text.withValues(alpha: 0.6),
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        );
+      },
     );
+  }
+
+  List<Map<String, dynamic>> _generateLectureSlides() {
+    final lectureTitle = widget.lecture['title'] as String;
+
+    // Generate context-aware slides based on lecture title
+    if (lectureTitle.contains('Cell Injury')) {
+      return [
+        {
+          'title': 'Introduction to Cell Injury',
+          'icon': Icons.science,
+          'description': 'Overview of cellular stress responses and adaptation mechanisms',
+          'points': ['Homeostasis', 'Stress adaptation', 'Injury pathways'],
+        },
+        {
+          'title': 'Cellular Adaptations',
+          'icon': Icons.analytics,
+          'description': 'Hypertrophy, hyperplasia, atrophy, and metaplasia explained',
+          'points': ['Hypertrophy', 'Hyperplasia', 'Atrophy', 'Metaplasia'],
+        },
+        {
+          'title': 'Reversible Cell Injury',
+          'icon': Icons.refresh,
+          'description': 'Cellular swelling, fatty change, and recovery mechanisms',
+          'points': ['Cellular swelling', 'Fatty change', 'Recovery'],
+        },
+        {
+          'title': 'Irreversible Injury',
+          'icon': Icons.dangerous,
+          'description': 'Necrosis and apoptosis: morphology and biochemical features',
+          'points': ['Necrosis types', 'Apoptosis', 'DNA fragmentation'],
+        },
+        {
+          'title': 'Clinical Correlations',
+          'icon': Icons.medical_services,
+          'description': 'Myocardial infarction, stroke, and hepatic injury examples',
+          'points': ['MI pathology', 'Stroke types', 'Liver injury'],
+        },
+      ];
+    } else if (lectureTitle.contains('Inflammation')) {
+      return [
+        {
+          'title': 'Acute Inflammation',
+          'icon': Icons.flash_on,
+          'description': 'Vascular changes and cellular recruitment in acute response',
+          'points': ['Vasodilation', 'Exudation', 'Leukocytes'],
+        },
+        {
+          'title': 'Cardinal Signs',
+          'icon': Icons.warning_amber,
+          'description': 'Rubor, tumor, calor, dolor, and functio laesa explained',
+          'points': ['Redness', 'Swelling', 'Heat', 'Pain'],
+        },
+        {
+          'title': 'Chronic Inflammation',
+          'icon': Icons.timeline,
+          'description': 'Persistent inflammation with tissue destruction and repair',
+          'points': ['Macrophages', 'Lymphocytes', 'Fibrosis'],
+        },
+        {
+          'title': 'Wound Healing',
+          'icon': Icons.healing,
+          'description': 'Hemostasis, inflammation, proliferation, and remodeling',
+          'points': ['Hemostasis', 'Proliferation', 'Remodeling'],
+        },
+      ];
+    } else if (lectureTitle.contains('Hemodynamic')) {
+      return [
+        {
+          'title': 'Edema Formation',
+          'icon': Icons.water_drop,
+          'description': 'Mechanisms of fluid accumulation in tissues',
+          'points': ['Hydrostatic', 'Oncotic', 'Lymphatic'],
+        },
+        {
+          'title': 'Thrombosis',
+          'icon': Icons.block,
+          'description': 'Virchow\'s triad: endothelial injury, abnormal flow, hypercoagulability',
+          'points': ['Endothelial injury', 'Stasis', 'Hypercoagulability'],
+        },
+        {
+          'title': 'Embolism Types',
+          'icon': Icons.air,
+          'description': 'Thromboembolic, fat, air, and amniotic fluid emboli',
+          'points': ['Thromboembolism', 'Fat embolism', 'Air embolism'],
+        },
+        {
+          'title': 'Infarction',
+          'icon': Icons.heart_broken,
+          'description': 'Red vs white infarcts and common anatomical sites',
+          'points': ['MI', 'Stroke', 'Bowel infarction'],
+        },
+      ];
+    } else if (lectureTitle.contains('Neoplasia')) {
+      return [
+        {
+          'title': 'Tumor Nomenclature',
+          'icon': Icons.label,
+          'description': 'Benign vs malignant tumor naming conventions',
+          'points': ['Benign (-oma)', 'Carcinoma', 'Sarcoma'],
+        },
+        {
+          'title': 'Hallmarks of Cancer',
+          'icon': Icons.stars,
+          'description': 'Six hallmarks and enabling characteristics',
+          'points': ['Proliferation', 'Apoptosis resistance', 'Angiogenesis'],
+        },
+        {
+          'title': 'Metastasis',
+          'icon': Icons.share,
+          'description': 'Invasion and spread mechanisms',
+          'points': ['Invasion', 'Lymphatic', 'Hematogenous'],
+        },
+        {
+          'title': 'TNM Staging',
+          'icon': Icons.assessment,
+          'description': 'Tumor, node, metastasis classification system',
+          'points': ['T stage', 'N stage', 'M stage'],
+        },
+      ];
+    } else if (lectureTitle.contains('Immunopathology')) {
+      return [
+        {
+          'title': 'Type I Hypersensitivity',
+          'icon': Icons.emergency,
+          'description': 'IgE-mediated allergic reactions and anaphylaxis',
+          'points': ['IgE', 'Mast cells', 'Histamine'],
+        },
+        {
+          'title': 'Type II Hypersensitivity',
+          'icon': Icons.bloodtype,
+          'description': 'Antibody-mediated cytotoxic reactions',
+          'points': ['ABO mismatch', 'Graves', 'Autoantibodies'],
+        },
+        {
+          'title': 'Type III Hypersensitivity',
+          'icon': Icons.grain,
+          'description': 'Immune complex-mediated diseases',
+          'points': ['SLE', 'Serum sickness', 'Vasculitis'],
+        },
+        {
+          'title': 'Type IV Hypersensitivity',
+          'icon': Icons.schedule,
+          'description': 'T-cell mediated delayed reactions',
+          'points': ['TB test', 'Contact dermatitis', 'T cells'],
+        },
+      ];
+    } else {
+      return [
+        {
+          'title': 'Bacterial Infections',
+          'icon': Icons.bug_report,
+          'description': 'Pathogenic bacteria and tissue responses',
+          'points': ['Streptococcus', 'Staphylococcus', 'TB'],
+        },
+        {
+          'title': 'Viral Infections',
+          'icon': Icons.coronavirus,
+          'description': 'Viral pathogenesis and cytopathic effects',
+          'points': ['HIV', 'Hepatitis', 'Influenza'],
+        },
+        {
+          'title': 'Fungal Infections',
+          'icon': Icons.spa,
+          'description': 'Opportunistic and endemic mycoses',
+          'points': ['Candida', 'Aspergillus', 'Cryptococcus'],
+        },
+        {
+          'title': 'Parasitic Diseases',
+          'icon': Icons.pest_control,
+          'description': 'Protozoan and helminthic infections',
+          'points': ['Malaria', 'Amebiasis', 'Helminths'],
+        },
+      ];
+    }
   }
 
   Widget _buildSummaryTab() {

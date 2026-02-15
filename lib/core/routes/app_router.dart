@@ -118,7 +118,10 @@ class Routers {
 
       case AppRoutes.studentDashboardView:
         return MaterialPageRoute(
-          builder: (_) => const StudentDashboardView(),
+          builder: (_) => BlocProvider(
+            create: (_) => sl<ProfileCubit>()..loadProfile(),
+            child: const StudentDashboardView(),
+          ),
         );
 
       case AppRoutes.notificationsView:
@@ -195,7 +198,12 @@ class Routers {
         );
 
       case AppRoutes.profileSettingsView:
-        return MaterialPageRoute(builder: (_) => const ProfileSettingsView());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => sl<ProfileCubit>()..loadProfile(),
+            child: const ProfileSettingsView(),
+          ),
+        );
 
       case AppRoutes.editProfileView:
         return MaterialPageRoute(builder: (_) => const EditProfileView());

@@ -158,7 +158,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
   Widget _buildGradesSection() {
     return Container(
       height: 120,
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -188,6 +188,7 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
       },
       child: Container(
         width: 100,
+        height: 100,
         margin: const EdgeInsets.only(right: 12),
         decoration: BoxDecoration(
           color: const Color(0xFF167F71),
@@ -202,23 +203,26 @@ class _TeacherProfileViewState extends State<TeacherProfileView> {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               gradeNumber,
               style: const TextStyle(
-                fontSize: 36,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
+                height: 1.0,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               'SECONDARY',
               style: TextStyle(
-                fontSize: 10,
+                fontSize: 8,
                 fontWeight: FontWeight.w600,
                 color: Colors.white.withOpacity(0.8),
-                letterSpacing: 0.5,
+                letterSpacing: 0.3,
+                height: 1.0,
               ),
             ),
           ],
